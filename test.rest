@@ -1,0 +1,18 @@
+@token = 5cdfeb16a858d48c568c572b1bf48b2e3f48d99b
+
+
+
+### AUTH ###
+
+
+POST http://127.0.0.1:8000/registration/
+Content-Type: application/json
+
+{ "username": "stefan", "email": "stefan@mail.de", "password": "123456789" }
+
+###
+
+POST http://127.0.0.1:8000/login/
+Content-Type: application/json
+
+{ "username": "stefan", "password": "123456789" }

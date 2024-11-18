@@ -43,9 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
+    'django_filters',
     'auth_app',
     'freelancer_platform_app',
-    'django_filters',
 ]
 
 MIDDLEWARE = [

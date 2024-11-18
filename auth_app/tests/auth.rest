@@ -1,0 +1,74 @@
+# 
+# 
+# Description
+# 
+# This file can be used to send HTTP-Requests and view the response in Visual Studio Code directly.
+# Install Rest-Client Extension for Visual Studio Code to use this test-file:
+# https://marketplace.visualstudio.com/items?itemName=humao.rest-client
+# 
+# 
+# Usage
+# 
+# Enter a valid {@token} and hit the 'Send-Request'-button above the request with the django-server running.
+# The 'registration/'- and 'login/'-endpoints do not require a token.
+# The response will be previewed in a separate webview panel of Visual Studio Code.
+# 
+# 
+# Token
+# 
+# Some requests require a valid API-Token.
+# You will get a token by sending a POST-request to the 'registration/'-endpoint with valid credentials.
+# You can use the first request of the auth.rest file in the auth_app-folder.
+# Just replace the value of the @token-variable below with the token of the response.
+# 
+# 
+# Caution
+# 
+# Keep in mind, that these are real requests and there is no test database.
+# The requests will alter the data of the projects database.
+# 
+# 
+
+
+@token = 5ebf940bdd40e9f95f8f8a4cddb79bef5e37d770
+
+### AUTH ###
+
+
+POST http://127.0.0.1:8000/api/registration/
+Content-Type: application/json
+
+{ "username": "user-business", "email": "test@mail.de", "password": "123456789", "repeated_password": "123456789", "type": "business" }
+
+###
+
+POST http://127.0.0.1:8000/api/registration/
+Content-Type: application/json
+
+{ "username": "user-customer", "email": "test@mail.de", "password": "123456789", "repeated_password": "123456789", "type": "customer" }
+
+
+###
+
+POST http://127.0.0.1:8000/api/login/
+Content-Type: application/json
+
+{ "username": "user-customer", "password": "123456789" }
+
+###
+
+GET http://127.0.0.1:8000/api/profile/2
+Content-Type: application/json
+Authorization: token {{token}}
+
+###
+
+GET http://127.0.0.1:8000/api/profiles/customer
+Content-Type: application/json
+Authorization: token {{token}}
+
+###
+
+GET http://127.0.0.1:8000/api/profiles/business
+Content-Type: application/json
+Authorization: token {{token}}

@@ -1,5 +1,4 @@
 from django.db import models
-from auth_app.models import UserProfile
 from django.core.validators import MinValueValidator
 from django.contrib.auth.models import User
 
@@ -7,14 +6,10 @@ from django.contrib.auth.models import User
 class Offer(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
-    image = models.FileField(upload_to='uploads/', blank=True, null=True)
+    image = models.FileField(upload_to='uploads/offer_images/', blank=True, null=True)
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
-    # class Meta:
-    # needed?
-    # unique_together = ['user', 'title']
 
 
 class OfferDetail(models.Model):

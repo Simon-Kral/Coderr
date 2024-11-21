@@ -12,6 +12,8 @@
 # Enter a valid {@token} and hit the 'Send-Request'-button above the request with the django-server running.
 # The 'registration/'- and 'login/'-endpoints do not require a token.
 # The response will be previewed in a separate webview panel of Visual Studio Code.
+# The {name}.rest files contain various requests, that were used for Testing during Development.
+# You can alter the requests or create new ones to test all kinds of situations.
 # 
 # 
 # Token
@@ -30,25 +32,26 @@
 # 
 
 
-@token = 6347ffb04d5ff707977251ba195b02bab8e3646a
-
+@token_business = 62800b6b806b7a6837b953e0d73256561a978b24
+@token_customer = caef84cccc6627c2ae0c71c5d3b8655252b86a01
+@token_admin = 66951446c4e912903de88fe344981606db14cf92
 ### Orders
 
 GET http://127.0.0.1:8000/api/reviews/
 Content-Type: application/json
-Authorization: token {{token}}
+Authorization: token {{token_customer}}
 
 ###
 
 GET http://127.0.0.1:8000/api/reviews/1
 Content-Type: application/json
-Authorization: token {{token}}
+Authorization: token {{token_customer}}
 
 ###
 
 POST http://127.0.0.1:8000/api/reviews/
 Content-Type: application/json
-Authorization: token {{token}}
+Authorization: token {{token_customer}}
 
 {
     "business_user": 3,

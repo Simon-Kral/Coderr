@@ -1,27 +1,25 @@
-from rest_framework import status,  viewsets
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.authentication import TokenAuthentication
-from .permissions import ReadOnly, IsAdmin, IsAuthor, IsBusinessUser, IsCustomerUser
-from .serializers import OfferSerializer, OfferDetailSerializer, DetailsSerializer, OrderSerializer, ReviewSerializer
-from ..models import Offer, OfferDetail, Order, Review
-from rest_framework.response import Response
+from rest_framework import status, generics, viewsets, filters
 from rest_framework.views import APIView
-from rest_framework import generics
-from django.db.models import Avg
-from auth_app.models import BusinessProfile
-from django.contrib.auth.models import User
+from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import filters
+from django.db.models import Min, Avg
+from django.contrib.auth.models import User
+from auth_app.models import BusinessProfile
+from ..models import Offer, OfferDetail, Order, Review
+from .serializers import OfferSerializer, OfferDetailSerializer, DetailsSerializer, OrderSerializer, ReviewSerializer
 from .filters import OfferFilter
 from .pagination import OfferPagination
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from coderr_project.permissions import ReadOnly, Forbidden, IsAdmin, IsStaff, IsOwner, IsBusinessUser, IsCustomerUser
 
 
 class OfferListView(generics.ListCreateAPIView):
 
     authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated, IsAdmin | IsBusinessUser | ReadOnly]
+    permission_classes = []
 
-    queryset = Offer.objects.all()
+    queryset = Offer.objects.all().annotate(min_price=Min('details__price'))
     serializer_class = OfferSerializer
 
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
@@ -30,20 +28,43 @@ class OfferListView(generics.ListCreateAPIView):
     search_fields = ['title', 'description']
     pagination_class = OfferPagination
 
+    def get_permissions(self):
+        if self.request.method == 'GET':
+            self.permission_classes = [AllowAny]
+        if self.request.method == 'POST':
+            self.permission_classes = [IsAdmin | IsBusinessUser]
+        return super(OfferListView, self).get_permissions()
+
 
 class OfferDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated, IsAdmin | IsBusinessUser | ReadOnly]
+    permission_classes = []
 
     queryset = Offer.objects.all()
     serializer_class = OfferDetailSerializer
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        self.perform_destroy(instance)
+        return Response({}, status=status.HTTP_200_OK)
+
+    def get_permissions(self):
+        if self.request.method == 'GET':
+            self.permission_classes = [AllowAny]
+        if self.request.method == 'PUT':
+            self.permission_classes = [Forbidden]
+        if self.request.method == 'PATCH':
+            self.permission_classes = [IsAdmin | IsOwner]
+        if self.request.method == 'DELETE':
+            self.permission_classes = [IsAdmin | IsOwner]
+        return super(OfferDetailView, self).get_permissions()
 
 
 class DetailsView(generics.RetrieveUpdateDestroyAPIView):
 
     authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated, IsAdmin | IsBusinessUser | ReadOnly]
+    permission_classes = [IsAdmin | IsOwner | ReadOnly]
 
     queryset = OfferDetail.objects.all()
     serializer_class = DetailsSerializer
@@ -52,19 +73,62 @@ class DetailsView(generics.RetrieveUpdateDestroyAPIView):
 class OrderViewSet(viewsets.ModelViewSet):
 
     authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated, IsAdmin | IsCustomerUser | ReadOnly]
+    permission_classes = []
 
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
+
+    def get_queryset(self):
+        user = self.request.user
+
+        if user.is_superuser:
+            return Order.objects.all()
+
+        return Order.objects.filter(customer_user=user) | Order.objects.filter(offer_details__offer__user=user)
+
+    def get_permissions(self):
+        if self.request.method == 'GET':
+            self.permission_classes = [IsAuthenticated]
+        if self.request.method == 'POST':
+            self.permission_classes = [IsAdmin | IsCustomerUser]
+        if self.request.method == 'PUT':
+            self.permission_classes = [Forbidden]
+        if self.request.method == 'PATCH':
+            self.permission_classes = [IsAdmin | IsOwner]
+        if self.request.method == 'DELETE':
+            self.permission_classes = [IsAdmin]
+        return super(OrderViewSet, self).get_permissions()
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        self.perform_destroy(instance)
+        return Response({}, status=status.HTTP_200_OK)
 
 
 class ReviewViewSet(viewsets.ModelViewSet):
 
     authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated, IsAdmin | IsCustomerUser | ReadOnly]
+    permission_classes = []
 
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
+
+    filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
+    filterset_fields = ['business_user_id', 'reviewer_id']
+    ordering_fields = ['updated_at', 'rating']
+
+    def get_permissions(self):
+        if self.request.method == 'GET':
+            self.permission_classes = [IsAuthenticated]
+        if self.request.method == 'POST':
+            self.permission_classes = [IsAdmin | IsCustomerUser]
+        if self.request.method == 'PUT':
+            self.permission_classes = [Forbidden]
+        if self.request.method == 'PATCH':
+            self.permission_classes = [IsAdmin | IsOwner]
+        if self.request.method == 'DELETE':
+            self.permission_classes = [IsStaff | IsOwner]
+        return super(ReviewViewSet, self).get_permissions()
 
 
 class BaseInfoView(APIView):

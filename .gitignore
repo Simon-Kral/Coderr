@@ -29,3 +29,8 @@ db.sqlite3
 *.drawio
 *.todo
 backend/*.rest
+**/tests/default_tests.py
+**/tests/test_login.py
+**/tests/test_registration.py
+**/tests/test_offer.py
+**/tests/test_order.py

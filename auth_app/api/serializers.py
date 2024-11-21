@@ -1,9 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from ..models import UserProfile, CustomerProfile, BusinessProfile
-from django.contrib.auth import authenticate
-from rest_framework.authtoken.serializers import AuthTokenSerializer
-from rest_framework.authtoken.models import Token
+from ..models import CustomerProfile, BusinessProfile
 from coderr_project.utils import get_user_details
 
 
@@ -24,24 +21,19 @@ class RegistrationSerializer(serializers.Serializer):
         pw = attrs.get('password')
         repeated_password = attrs.get('repeated_password')
         type = attrs.get('type')
-
         if User.objects.filter(username=attrs['username']).exists():
             raise serializers.ValidationError(
                 {'error': 'A user with this username already exists.'})
-
         if pw != repeated_password:
             raise serializers.ValidationError(
                 {'error': 'Passwords don\'t match.'})
-
         if type not in ['customer', 'business']:
             raise serializers.ValidationError(
                 {'error': 'Account type is invalid.'})
-
         return attrs
 
     def create(self, validated_data):
-        account = User(
-            email=validated_data['email'], username=validated_data['username'])
+        account = User(email=validated_data['email'], username=validated_data['username'])
         account.set_password(self.validated_data['password'])
         account.save()
         return account
@@ -54,15 +46,11 @@ class LoginSerializer(serializers.Serializer):
     def validate(self, attrs):
         username = attrs.get('username')
         password = attrs.get('password')
-
         if not User.objects.filter(username=username).exists():
             raise serializers.ValidationError({'error': 'Username not found.'})
-
         self.user = User.objects.get(username=username)
-
         if not self.user.check_password(password):
             raise serializers.ValidationError({'error': 'Wrong password.'})
-
         return attrs
 
     def create(self, validated_data):
@@ -90,9 +78,9 @@ class CustomerProfileSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         representation = super().to_representation(instance)
         if self.context['request'].method == 'GET':
-            representation['user'] = get_user_details(self.context['request'].user)
-            representation['user']['pk'] = self.context['request'].user.id
-
+            user = User.objects.get(pk=representation.pop('user'))
+            representation['user'] = get_user_details(user)
+            representation['user']['pk'] = user.id
         return representation
 
 
@@ -104,13 +92,7 @@ class BusinessProfileSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         representation = super().to_representation(instance)
         if self.context['request'].method == 'GET':
-            representation['user'] = get_user_details(self.context['request'].user)
-            representation['user']['pk'] = self.context['request'].user.id
-
+            user = User.objects.get(pk=representation.pop('user'))
+            representation['user'] = get_user_details(user)
+            representation['user']['pk'] = user.id
         return representation
-
-
-class FileUploadSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = UserProfile
-        fields = ['file', 'uploaded_at']

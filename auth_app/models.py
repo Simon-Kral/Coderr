@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 class UserProfile(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
-    file = models.FileField(upload_to='uploads/', blank=True, null=True)
+    file = models.FileField(upload_to='uploads/avatars/', blank=True, null=True)
     uploaded_at = models.DateTimeField(auto_now=True)
 
     class Meta:

@@ -83,6 +83,9 @@ class OfferTests(DefaultCases):
 
         response = self.client.post(url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        # offer_id = response.data['id']
-        # self.assertEqual(3, len(OfferDetail.objects.filter(offer=offer_id)))
-        # self.assertEqual(4, len(Feature.objects.all()))
+        detail_data = OfferDetail.objects.filter(offer=response.data['id'])
+        self.assertEqual(3, len(detail_data))
+        for detail in detail_data:
+            self.assertGreaterEqual(len(detail.features), 1)
+        offer_types = set(detail.offer_type for detail in detail_data)
+        self.assertEqual(offer_types, {'basic', 'standard', 'premium'})

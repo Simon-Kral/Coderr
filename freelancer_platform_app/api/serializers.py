@@ -1,8 +1,8 @@
 from rest_framework import serializers
 from ..models import Offer, OfferDetail, Order, Review
-from django.urls import reverse
 from coderr_project.utils import get_hyperlinked_details, get_user_details, get_min_value
 from django.contrib.auth.models import User
+from django.contrib.auth.models import AnonymousUser
 
 
 class DetailsSerializer(serializers.ModelSerializer):
@@ -31,18 +31,27 @@ class OfferSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         representation = super().to_representation(instance)
         if self.context['request'].method == 'GET':
+            if not isinstance(self.context['request'].user, AnonymousUser):
+                representation['user_details'] = get_user_details(self.context['request'].user)
             representation['details'] = get_hyperlinked_details(instance, self.context['request'], DetailsHyperlinkedSerializer)
-            representation['user_details'] = get_user_details(self.context['request'].user)
             representation['min_price'] = get_min_value(instance.details, 'price')
             representation['min_delivery_time'] = get_min_value(instance.details, 'delivery_time_in_days')
 
         return representation
 
     def validate(self, attrs):
-        details = self.initial_data.get('details')
-        if len(details) != 3:
+        detail_data = self.initial_data.get('details')
+        if len(detail_data) != 3:
             raise serializers.ValidationError("Exactly 3 offer-details are required.")
-        # todo add validation
+
+        needed_types = {'basic', 'standard', 'premium'}
+        provided_types = {detail['offer_type'] for detail in detail_data}
+
+        if needed_types != provided_types:
+            raise serializers.ValidationError(
+                "The offer must contain exactly one 'basic', 'standard', and 'premium' detail."
+            )
+
         return attrs
 
     def create(self, validated_data):
@@ -69,8 +78,17 @@ class OfferDetailSerializer(serializers.ModelSerializer):
             representation['user_details'] = get_user_details(self.context['request'].user)
             representation['min_price'] = get_min_value(instance.details, 'price')
             representation['min_delivery_time'] = get_min_value(instance.details, 'delivery_time_in_days')
-
         return representation
+
+    def update(self, instance, validated_data):
+        if 'details' in validated_data:
+            detail_data = validated_data.pop('details')
+            for detail in detail_data:
+                offer_type = detail.get('offer_type')
+                detail_instance = instance.details.filter(offer_type=offer_type).first()
+                super().update(detail_instance, detail)
+        instance = super().update(instance, validated_data)
+        return instance
 
 
 class OrderSerializer(serializers.ModelSerializer):
@@ -83,7 +101,6 @@ class OrderSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         details = OfferDetail.objects.get(pk=self.initial_data.get('offer_detail_id'))
-        # print(details['offer'])
         user = self.context['request'].user
         order = Order.objects.create(customer_user=user, offer_details=details)
         return order

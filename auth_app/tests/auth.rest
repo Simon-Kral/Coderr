@@ -12,6 +12,8 @@
 # Enter a valid {@token} and hit the 'Send-Request'-button above the request with the django-server running.
 # The 'registration/'- and 'login/'-endpoints do not require a token.
 # The response will be previewed in a separate webview panel of Visual Studio Code.
+# The {name}.rest files contain various requests, that were used for Testing during Development.
+# You can alter the requests or create new ones to test all kinds of situations.
 # 
 # 
 # Token
@@ -30,22 +32,23 @@
 # 
 
 
-@token = 5ebf940bdd40e9f95f8f8a4cddb79bef5e37d770
-
+@token_business = 62800b6b806b7a6837b953e0d73256561a978b24
+@token_customer = caef84cccc6627c2ae0c71c5d3b8655252b86a01
+@token_admin = 66951446c4e912903de88fe344981606db14cf92
 ### AUTH ###
 
 
 POST http://127.0.0.1:8000/api/registration/
 Content-Type: application/json
 
-{ "username": "user-business", "email": "test@mail.de", "password": "123456789", "repeated_password": "123456789", "type": "business" }
+{ "username": "user-business", "email": "user-business@mail.de", "password": "123456789", "repeated_password": "123456789", "type": "business" }
 
 ###
 
 POST http://127.0.0.1:8000/api/registration/
 Content-Type: application/json
 
-{ "username": "user-customer", "email": "test@mail.de", "password": "123456789", "repeated_password": "123456789", "type": "customer" }
+{ "username": "user-customer", "email": "user-customer@mail.de", "password": "123456789", "repeated_password": "123456789", "type": "customer" }
 
 
 ###
@@ -57,18 +60,50 @@ Content-Type: application/json
 
 ###
 
-GET http://127.0.0.1:8000/api/profile/2
+GET http://127.0.0.1:8000/api/profile/1
 Content-Type: application/json
-Authorization: token {{token}}
+Authorization: token {{token_customer}}
+
+###
+
+PATCH http://127.0.0.1:8000/api/profile/1/
+Content-Type: application/json
+Authorization: token {{token_customer}}
+
+{
+    "first_name": "Simon",
+    "last_name": "Kral",
+    "email": "simonkral92@gmail.com",
+    "tel": "016097774153",
+    "location": "Reudelsterz",
+    "description": "Die Firma",
+    "working_hours": 40
+}
+
+###
+
+PATCH http://127.0.0.1:8000/api/profile/2/
+Content-Type: application/json
+Authorization: token {{token_customer}}
+
+{
+    "first_name": "User",
+    "last_name": "Business",
+    "email": "user-business@mail.de",
+    "tel": "016077777777",
+    "location": "Koblenz",
+    "description": "User Business Firma",
+    "working_hours": 60
+}
 
 ###
 
 GET http://127.0.0.1:8000/api/profiles/customer
 Content-Type: application/json
-Authorization: token {{token}}
+Authorization: token {{token_customer}}
 
 ###
 
 GET http://127.0.0.1:8000/api/profiles/business
 Content-Type: application/json
-Authorization: token {{token}}
+Authorization: token {{token_customer}}

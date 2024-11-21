@@ -12,6 +12,8 @@
 # Enter a valid {@token} and hit the 'Send-Request'-button above the request with the django-server running.
 # The 'registration/'- and 'login/'-endpoints do not require a token.
 # The response will be previewed in a separate webview panel of Visual Studio Code.
+# The {name}.rest files contain various requests, that were used for Testing during Development.
+# You can alter the requests or create new ones to test all kinds of situations.
 # 
 # 
 # Token
@@ -30,59 +32,84 @@
 # 
 
 
-@token = 5ebf940bdd40e9f95f8f8a4cddb79bef5e37d770
-
+@token_business = 62800b6b806b7a6837b953e0d73256561a978b24
+@token_customer = caef84cccc6627c2ae0c71c5d3b8655252b86a01
+@token_admin = 66951446c4e912903de88fe344981606db14cf92
 ### Offers
 
 GET http://127.0.0.1:8000/api/offers/
 Content-Type: application/json
-Authorization: token {{token}}
+Authorization: token {{token_customer}}
 
 ###
 
-GET http://127.0.0.1:8000/api/offers/2/
+GET http://127.0.0.1:8000/api/offers/?creator_id=2
 Content-Type: application/json
-Authorization: token {{token}}
+Authorization: token {{token_customer}}
 
 ###
 
-GET http://127.0.0.1:8000/api/offerdetails/13/
+GET http://127.0.0.1:8000/api/offers/?min_price=150
 Content-Type: application/json
-Authorization: token {{token}}
+Authorization: token {{token_customer}}
+
+###
+
+GET http://127.0.0.1:8000/api/offers/?max_delivery_time=5
+Content-Type: application/json
+Authorization: token {{token_customer}}
+
+###
+
+GET http://127.0.0.1:8000/api/offers/?search=web
+Content-Type: application/json
+Authorization: token {{token_customer}}
+
+###
+
+GET http://127.0.0.1:8000/api/offers/?ordering=updated_at
+Content-Type: application/json
+Authorization: token {{token_customer}}
+
+###
+
+GET http://127.0.0.1:8000/api/offers/?ordering=min_price
+Content-Type: application/json
+Authorization: token {{token_customer}}
 
 ###
 
 POST http://127.0.0.1:8000/api/offers/
 Content-Type: application/json
-Authorization: token {{token}}
+Authorization: token {{token_business}}
 
 {
-    "title": "Grafikdesign-Paket",
+    "title": "Website Design",
     "image": null,
-    "description": "Ein umfassendes Grafikdesign-Paket für Unternehmen.",
+    "description": "Professionelles Website-Design.",
     "details": [
         {
-        "title": "Basic Design",
-        "revisions": 2,
-        "delivery_time_in_days": 5,
-        "price": 100.00,
-        "features": ["Logo Design", "Visitenkarte"],
+        "title": "Basic Website Development",
+        "revisions": 1,
+        "delivery_time_in_days": 7,
+        "price": 150.00,
+        "features": ["Homepage"],
         "offer_type": "basic"
         },
         {
-        "title": "Standard Design",
-        "revisions": 5,
-        "delivery_time_in_days": 7,
-        "price": 200.00,
-        "features": ["Logo Design", "Visitenkarte", "Briefpapier"],
+        "title": "Standard Website Development",
+        "revisions": 6,
+        "delivery_time_in_days": 12,
+        "price": 300.00,
+        "features": ["Homepage"],
         "offer_type": "standard"
         },
         {
-        "title": "Premium Design",
-        "revisions": 10,
-        "delivery_time_in_days": 10,
+        "title": "Premium Website Development",
+        "revisions": 3,
+        "delivery_time_in_days": 20,
         "price": 500.00,
-        "features": ["Logo Design", "Visitenkarte", "Briefpapier", "Flyer"],
+        "features": ["Homepage", "Responsive Design"],
         "offer_type": "premium"
         }
     ]
@@ -90,41 +117,58 @@ Authorization: token {{token}}
 
 ###
 
-GET http://127.0.0.1:8000/api/offers/?creator_id=2
+PATCH http://127.0.0.1:8000/api/offers/4/
 Content-Type: application/json
-Authorization: token {{token}}
+Authorization: token {{token_business}}
 
+{
+    "description":"Ein umfassendes Grafikdesign-Paket für Unternehmen.",
+    "title":"Grafikdesign-Pakete",
+    "details":[
+        {
+        "id":13,
+        "title":"Basic Designs",
+        "revisions":"2",
+        "delivery_time_in_days":"5",
+        "price":"150",
+        "features":["Logo Design","Visitenkarte"],
+        "offer_type":"basic"
+        },
+        {
+        "id":14,
+        "title":"Standard Designs",
+        "revisions":"5",
+        "delivery_time_in_days":"7",
+        "price":"300",
+        "features":["Logo Design","Visitenkarte","Briefpapier"],
+        "offer_type":"standard"
+        },
+        {
+        "id":15,
+        "title":"Premium Designs",
+        "revisions":"10",
+        "delivery_time_in_days":"10",
+        "price":"600",
+        "features":["Logo Design","Visitenkarte","Briefpapier","Flyer"],
+        "offer_type":"premium"
+        }
+    ]
+}
 
 ###
 
-GET http://127.0.0.1:8000/api/offers/?creator_id=2
+DELETE http://127.0.0.1:8000/api/offers/6/
 Content-Type: application/json
-Authorization: token {{token}}
-
+Authorization: token {{token_business}}
 
 ###
 
-GET http://127.0.0.1:8000/api/offers/?min_price=100
+GET http://127.0.0.1:8000/api/offers/2/
 Content-Type: application/json
-Authorization: token {{token}}
-
+Authorization: token {{token_business}}
 
 ###
 
-GET http://127.0.0.1:8000/api/offers/?max_delivery_time=12
+GET http://127.0.0.1:8000/api/offerdetails/13/
 Content-Type: application/json
-Authorization: token {{token}}
-
-
-###
-
-GET http://127.0.0.1:8000/api/offers/?search=grafik
-Content-Type: application/json
-Authorization: token {{token}}
-
-
-###
-
-GET http://127.0.0.1:8000/api/offers/?ordering=updated_at
-Content-Type: application/json
-Authorization: token {{token}}
+Authorization: token {{token_business}}

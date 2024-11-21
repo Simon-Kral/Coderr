@@ -24,11 +24,11 @@ def get_user_details(user):
     return data
 
 
-def get_profile_serializer(profile, customer_serializer, business_serializer):
+def get_profile_serializer(profile, customer_serializer, business_serializer, *args, **kwargs):
     if profile.type == 'customer':
-        serializer = customer_serializer(profile)
+        serializer = customer_serializer(profile, **kwargs)
     elif profile.type == 'business':
-        serializer = business_serializer(profile)
+        serializer = business_serializer(profile, **kwargs)
     return serializer
 
 

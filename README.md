@@ -71,4 +71,4 @@ For the Frontend I recommend the [Live-Server-Extension](https://marketplace.vis
         python manage.py createsuperuser
         ```
 Your Backend is now ready to be utilized by the Frontend.
-A detailed project documentation can be found in Coderr-Backend/docs/_build/html/index.html.
+A detailed backend documentation can be found in Coderr-Backend/docs/_build/html/index.html.

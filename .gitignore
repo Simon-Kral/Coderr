@@ -23,14 +23,16 @@ Thumbs.db
 
 # Backend
 /env
-db.sqlite3
+sqlite3
+__pycache__/
+*.sqlite3
 
 # Custom
 *.drawio
 *.todo
 backend/*.rest
-**/tests/default_tests.py
-**/tests/test_login.py
-**/tests/test_registration.py
-**/tests/test_offer.py
-**/tests/test_order.py
+default_tests.py
+test_login.py
+test_registration.py
+test_offer.py
+test_order.py

@@ -1,0 +1,460 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>auth_app.api package &mdash; Coderr 2024 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=6fefd858"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="freelancer_platform_app.api package" href="freelancer_platform_app.api.html" />
+    <link rel="prev" title="freelancer_platform_app.tests package" href="freelancer_platform_app.tests.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Coderr
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Coderr</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="auth_app.html">Auth-App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="freelancer_platform_app.html">Freelancer-Platform-App</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Auth-API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-auth_app.api.serializers">auth_app.api.serializers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#auth_app.api.serializers.BusinessProfileDetailSerializer"><code class="docutils literal notranslate"><span class="pre">BusinessProfileDetailSerializer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#auth_app.api.serializers.BusinessProfileSerializer"><code class="docutils literal notranslate"><span class="pre">BusinessProfileSerializer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#auth_app.api.serializers.CustomerProfileDetailSerializer"><code class="docutils literal notranslate"><span class="pre">CustomerProfileDetailSerializer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#auth_app.api.serializers.CustomerProfileSerializer"><code class="docutils literal notranslate"><span class="pre">CustomerProfileSerializer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#auth_app.api.serializers.LoginSerializer"><code class="docutils literal notranslate"><span class="pre">LoginSerializer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#auth_app.api.serializers.RegistrationSerializer"><code class="docutils literal notranslate"><span class="pre">RegistrationSerializer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#auth_app.api.serializers.UserSerializer"><code class="docutils literal notranslate"><span class="pre">UserSerializer</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-auth_app.api.urls">auth_app.api.urls module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-auth_app.api.views">auth_app.api.views module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#auth_app.api.views.BusinessProfileView"><code class="docutils literal notranslate"><span class="pre">BusinessProfileView</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#auth_app.api.views.CustomerProfileView"><code class="docutils literal notranslate"><span class="pre">CustomerProfileView</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#auth_app.api.views.LoginView"><code class="docutils literal notranslate"><span class="pre">LoginView</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#auth_app.api.views.ProfileDetailView"><code class="docutils literal notranslate"><span class="pre">ProfileDetailView</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#auth_app.api.views.RegistrationView"><code class="docutils literal notranslate"><span class="pre">RegistrationView</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-auth_app.api">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="freelancer_platform_app.api.html">Freelancer-Platform-API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coderr_project.html">Coderr-Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manage.html">Django manage file</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Coderr</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">Coderr</a></li>
+      <li class="breadcrumb-item active">auth_app.api package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/auth_app.api.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="auth-app-api-package">
+<h1>auth_app.api package<a class="headerlink" href="#auth-app-api-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-auth_app.api.serializers">
+<span id="auth-app-api-serializers-module"></span><h2>auth_app.api.serializers module<a class="headerlink" href="#module-auth_app.api.serializers" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="auth_app.api.serializers.BusinessProfileDetailSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">auth_app.api.serializers.</span></span><span class="sig-name descname"><span class="pre">BusinessProfileDetailSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#auth_app.api.serializers.BusinessProfileDetailSerializer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
+<p>Serializer for the BusinessProfile model. Provides details such as 
+the user, creation timestamp, uploaded file, business location, 
+telephone number, description, working hours, and type.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="auth_app.api.serializers.BusinessProfileDetailSerializer.Meta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="headerlink" href="#auth_app.api.serializers.BusinessProfileDetailSerializer.Meta" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="auth_app.api.serializers.BusinessProfileDetailSerializer.Meta.fields">
+<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['user',</span> <span class="pre">'created_at',</span> <span class="pre">'file',</span> <span class="pre">'uploaded_at',</span> <span class="pre">'location',</span> <span class="pre">'tel',</span> <span class="pre">'description',</span> <span class="pre">'working_hours',</span> <span class="pre">'type']</span></em><a class="headerlink" href="#auth_app.api.serializers.BusinessProfileDetailSerializer.Meta.fields" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="auth_app.api.serializers.BusinessProfileDetailSerializer.Meta.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#auth_app.api.serializers.BusinessProfileDetailSerializer.Meta.model" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="auth_app.html#auth_app.models.BusinessProfile" title="auth_app.models.BusinessProfile"><code class="xref py py-class docutils literal notranslate"><span class="pre">BusinessProfile</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="auth_app.api.serializers.BusinessProfileSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">auth_app.api.serializers.</span></span><span class="sig-name descname"><span class="pre">BusinessProfileSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#auth_app.api.serializers.BusinessProfileSerializer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
+<p>Serializer for the BusinessProfile model. Customizes the representation 
+of user details and other business-related fields.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="auth_app.api.serializers.BusinessProfileSerializer.Meta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="headerlink" href="#auth_app.api.serializers.BusinessProfileSerializer.Meta" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="auth_app.api.serializers.BusinessProfileSerializer.Meta.fields">
+<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['user',</span> <span class="pre">'created_at',</span> <span class="pre">'file',</span> <span class="pre">'uploaded_at',</span> <span class="pre">'location',</span> <span class="pre">'tel',</span> <span class="pre">'description',</span> <span class="pre">'working_hours',</span> <span class="pre">'type']</span></em><a class="headerlink" href="#auth_app.api.serializers.BusinessProfileSerializer.Meta.fields" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="auth_app.api.serializers.BusinessProfileSerializer.Meta.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#auth_app.api.serializers.BusinessProfileSerializer.Meta.model" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="auth_app.html#auth_app.models.BusinessProfile" title="auth_app.models.BusinessProfile"><code class="xref py py-class docutils literal notranslate"><span class="pre">BusinessProfile</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="auth_app.api.serializers.BusinessProfileSerializer.to_representation">
+<span class="sig-name descname"><span class="pre">to_representation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instance</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#auth_app.api.serializers.BusinessProfileSerializer.to_representation" title="Link to this definition"></a></dt>
+<dd><p>Customizes the representation of the BusinessProfile model by adding 
+user details for GET requests, and includes user primary key.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="auth_app.api.serializers.CustomerProfileDetailSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">auth_app.api.serializers.</span></span><span class="sig-name descname"><span class="pre">CustomerProfileDetailSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#auth_app.api.serializers.CustomerProfileDetailSerializer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
+<p>Serializer for the CustomerProfile model. Provides basic details 
+such as the user, creation timestamp, uploaded file, and type.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="auth_app.api.serializers.CustomerProfileDetailSerializer.Meta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="headerlink" href="#auth_app.api.serializers.CustomerProfileDetailSerializer.Meta" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="auth_app.api.serializers.CustomerProfileDetailSerializer.Meta.fields">
+<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['user',</span> <span class="pre">'created_at',</span> <span class="pre">'file',</span> <span class="pre">'uploaded_at',</span> <span class="pre">'type']</span></em><a class="headerlink" href="#auth_app.api.serializers.CustomerProfileDetailSerializer.Meta.fields" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="auth_app.api.serializers.CustomerProfileDetailSerializer.Meta.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#auth_app.api.serializers.CustomerProfileDetailSerializer.Meta.model" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="auth_app.html#auth_app.models.CustomerProfile" title="auth_app.models.CustomerProfile"><code class="xref py py-class docutils literal notranslate"><span class="pre">CustomerProfile</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="auth_app.api.serializers.CustomerProfileSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">auth_app.api.serializers.</span></span><span class="sig-name descname"><span class="pre">CustomerProfileSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#auth_app.api.serializers.CustomerProfileSerializer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
+<p>Serializer for the CustomerProfile model. Customizes the representation 
+of user details based on the request method.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="auth_app.api.serializers.CustomerProfileSerializer.Meta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="headerlink" href="#auth_app.api.serializers.CustomerProfileSerializer.Meta" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="auth_app.api.serializers.CustomerProfileSerializer.Meta.fields">
+<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['user',</span> <span class="pre">'created_at',</span> <span class="pre">'file',</span> <span class="pre">'uploaded_at',</span> <span class="pre">'type']</span></em><a class="headerlink" href="#auth_app.api.serializers.CustomerProfileSerializer.Meta.fields" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="auth_app.api.serializers.CustomerProfileSerializer.Meta.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#auth_app.api.serializers.CustomerProfileSerializer.Meta.model" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="auth_app.html#auth_app.models.CustomerProfile" title="auth_app.models.CustomerProfile"><code class="xref py py-class docutils literal notranslate"><span class="pre">CustomerProfile</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="auth_app.api.serializers.CustomerProfileSerializer.to_representation">
+<span class="sig-name descname"><span class="pre">to_representation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instance</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#auth_app.api.serializers.CustomerProfileSerializer.to_representation" title="Link to this definition"></a></dt>
+<dd><p>Customizes the representation of the CustomerProfile model by adding 
+user details for GET requests, and includes user primary key.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="auth_app.api.serializers.LoginSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">auth_app.api.serializers.</span></span><span class="sig-name descname"><span class="pre">LoginSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#auth_app.api.serializers.LoginSerializer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Serializer</span></code></p>
+<p>Serializer for user login. Validates the username and password for authentication.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="auth_app.api.serializers.LoginSerializer.create">
+<span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">validated_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#auth_app.api.serializers.LoginSerializer.create" title="Link to this definition"></a></dt>
+<dd><p>Returns the authenticated user after successful login.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="auth_app.api.serializers.LoginSerializer.validate">
+<span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attrs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#auth_app.api.serializers.LoginSerializer.validate" title="Link to this definition"></a></dt>
+<dd><p>Validates that the username exists and the password is correct.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="auth_app.api.serializers.RegistrationSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">auth_app.api.serializers.</span></span><span class="sig-name descname"><span class="pre">RegistrationSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#auth_app.api.serializers.RegistrationSerializer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Serializer</span></code></p>
+<p>Serializer for user registration. Handles validation of the provided 
+username, email, and password, as well as the account type (customer/business).</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="auth_app.api.serializers.RegistrationSerializer.create">
+<span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">validated_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#auth_app.api.serializers.RegistrationSerializer.create" title="Link to this definition"></a></dt>
+<dd><p>Creates a new user account using the validated data, 
+including setting the password and saving the account.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="auth_app.api.serializers.RegistrationSerializer.validate">
+<span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attrs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#auth_app.api.serializers.RegistrationSerializer.validate" title="Link to this definition"></a></dt>
+<dd><p>Validates the registration data, ensuring that:
+- The username is unique
+- The passwords match
+- The account type is valid (either ‘customer’ or ‘business’)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="auth_app.api.serializers.UserSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">auth_app.api.serializers.</span></span><span class="sig-name descname"><span class="pre">UserSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#auth_app.api.serializers.UserSerializer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
+<p>Serializer for User model. Provides basic user details such as username,
+email, first name, and last name.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="auth_app.api.serializers.UserSerializer.Meta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="headerlink" href="#auth_app.api.serializers.UserSerializer.Meta" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="auth_app.api.serializers.UserSerializer.Meta.fields">
+<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['username',</span> <span class="pre">'email',</span> <span class="pre">'first_name',</span> <span class="pre">'last_name']</span></em><a class="headerlink" href="#auth_app.api.serializers.UserSerializer.Meta.fields" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="auth_app.api.serializers.UserSerializer.Meta.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#auth_app.api.serializers.UserSerializer.Meta.model" title="Link to this definition"></a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">User</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-auth_app.api.urls">
+<span id="auth-app-api-urls-module"></span><h2>auth_app.api.urls module<a class="headerlink" href="#module-auth_app.api.urls" title="Link to this heading"></a></h2>
+</section>
+<section id="module-auth_app.api.views">
+<span id="auth-app-api-views-module"></span><h2>auth_app.api.views module<a class="headerlink" href="#module-auth_app.api.views" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="auth_app.api.views.BusinessProfileView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">auth_app.api.views.</span></span><span class="sig-name descname"><span class="pre">BusinessProfileView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#auth_app.api.views.BusinessProfileView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ListAPIView</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="auth_app.api.views.BusinessProfileView.authentication_classes">
+<span class="sig-name descname"><span class="pre">authentication_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.authentication.TokenAuthentication'&gt;]</span></em><a class="headerlink" href="#auth_app.api.views.BusinessProfileView.authentication_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="auth_app.api.views.BusinessProfileView.permission_classes">
+<span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'coderr_project.permissions.ReadOnly'&gt;]</span></em><a class="headerlink" href="#auth_app.api.views.BusinessProfileView.permission_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="auth_app.api.views.BusinessProfileView.queryset">
+<span class="sig-name descname"><span class="pre">queryset</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;QuerySet</span> <span class="pre">[&lt;BusinessProfile:</span> <span class="pre">BusinessProfile</span> <span class="pre">object</span> <span class="pre">(1)&gt;,</span> <span class="pre">&lt;BusinessProfile:</span> <span class="pre">BusinessProfile</span> <span class="pre">object</span> <span class="pre">(2)&gt;,</span> <span class="pre">&lt;BusinessProfile:</span> <span class="pre">BusinessProfile</span> <span class="pre">object</span> <span class="pre">(3)&gt;,</span> <span class="pre">&lt;BusinessProfile:</span> <span class="pre">BusinessProfile</span> <span class="pre">object</span> <span class="pre">(4)&gt;,</span> <span class="pre">&lt;BusinessProfile:</span> <span class="pre">BusinessProfile</span> <span class="pre">object</span> <span class="pre">(5)&gt;,</span> <span class="pre">&lt;BusinessProfile:</span> <span class="pre">BusinessProfile</span> <span class="pre">object</span> <span class="pre">(6)&gt;,</span> <span class="pre">&lt;BusinessProfile:</span> <span class="pre">BusinessProfile</span> <span class="pre">object</span> <span class="pre">(7)&gt;]&gt;</span></em><a class="headerlink" href="#auth_app.api.views.BusinessProfileView.queryset" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="auth_app.api.views.BusinessProfileView.serializer_class">
+<span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#auth_app.api.views.BusinessProfileView.serializer_class" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#auth_app.api.serializers.BusinessProfileSerializer" title="auth_app.api.serializers.BusinessProfileSerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">BusinessProfileSerializer</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="auth_app.api.views.CustomerProfileView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">auth_app.api.views.</span></span><span class="sig-name descname"><span class="pre">CustomerProfileView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#auth_app.api.views.CustomerProfileView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ListAPIView</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="auth_app.api.views.CustomerProfileView.authentication_classes">
+<span class="sig-name descname"><span class="pre">authentication_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.authentication.TokenAuthentication'&gt;]</span></em><a class="headerlink" href="#auth_app.api.views.CustomerProfileView.authentication_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="auth_app.api.views.CustomerProfileView.permission_classes">
+<span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'coderr_project.permissions.ReadOnly'&gt;]</span></em><a class="headerlink" href="#auth_app.api.views.CustomerProfileView.permission_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="auth_app.api.views.CustomerProfileView.queryset">
+<span class="sig-name descname"><span class="pre">queryset</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;QuerySet</span> <span class="pre">[&lt;CustomerProfile:</span> <span class="pre">CustomerProfile</span> <span class="pre">object</span> <span class="pre">(1)&gt;,</span> <span class="pre">&lt;CustomerProfile:</span> <span class="pre">CustomerProfile</span> <span class="pre">object</span> <span class="pre">(2)&gt;,</span> <span class="pre">&lt;CustomerProfile:</span> <span class="pre">CustomerProfile</span> <span class="pre">object</span> <span class="pre">(3)&gt;,</span> <span class="pre">&lt;CustomerProfile:</span> <span class="pre">CustomerProfile</span> <span class="pre">object</span> <span class="pre">(4)&gt;,</span> <span class="pre">&lt;CustomerProfile:</span> <span class="pre">CustomerProfile</span> <span class="pre">object</span> <span class="pre">(5)&gt;]&gt;</span></em><a class="headerlink" href="#auth_app.api.views.CustomerProfileView.queryset" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="auth_app.api.views.CustomerProfileView.serializer_class">
+<span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#auth_app.api.views.CustomerProfileView.serializer_class" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#auth_app.api.serializers.CustomerProfileSerializer" title="auth_app.api.serializers.CustomerProfileSerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">CustomerProfileSerializer</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="auth_app.api.views.LoginView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">auth_app.api.views.</span></span><span class="sig-name descname"><span class="pre">LoginView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#auth_app.api.views.LoginView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">APIView</span></code></p>
+<p>Handles user login and token generation by verifying credentials.
+Inherits from APIView to handle POST requests for login.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="auth_app.api.views.LoginView.permission_classes">
+<span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.permissions.AllowAny'&gt;]</span></em><a class="headerlink" href="#auth_app.api.views.LoginView.permission_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="auth_app.api.views.LoginView.post">
+<span class="sig-name descname"><span class="pre">post</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#auth_app.api.views.LoginView.post" title="Link to this definition"></a></dt>
+<dd><p>Authenticates the user and returns an authentication token if successful.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="auth_app.api.views.ProfileDetailView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">auth_app.api.views.</span></span><span class="sig-name descname"><span class="pre">ProfileDetailView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#auth_app.api.views.ProfileDetailView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">APIView</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="auth_app.api.views.ProfileDetailView.authentication_classes">
+<span class="sig-name descname"><span class="pre">authentication_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.authentication.TokenAuthentication'&gt;]</span></em><a class="headerlink" href="#auth_app.api.views.ProfileDetailView.authentication_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="auth_app.api.views.ProfileDetailView.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pk</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#auth_app.api.views.ProfileDetailView.get" title="Link to this definition"></a></dt>
+<dd><p>Fetches user profile details, including the user’s information and profile data.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="auth_app.api.views.ProfileDetailView.patch">
+<span class="sig-name descname"><span class="pre">patch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pk</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#auth_app.api.views.ProfileDetailView.patch" title="Link to this definition"></a></dt>
+<dd><p>Allows updating of the user profile details if the user is the profile owner or an admin.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="auth_app.api.views.ProfileDetailView.permission_classes">
+<span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.permissions.IsAuthenticated'&gt;]</span></em><a class="headerlink" href="#auth_app.api.views.ProfileDetailView.permission_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="auth_app.api.views.RegistrationView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">auth_app.api.views.</span></span><span class="sig-name descname"><span class="pre">RegistrationView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#auth_app.api.views.RegistrationView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">APIView</span></code></p>
+<p>Handles user registration and token generation. 
+Inherits from APIView to handle POST requests for registration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="auth_app.api.views.RegistrationView.permission_classes">
+<span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.permissions.AllowAny'&gt;]</span></em><a class="headerlink" href="#auth_app.api.views.RegistrationView.permission_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="auth_app.api.views.RegistrationView.post">
+<span class="sig-name descname"><span class="pre">post</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#auth_app.api.views.RegistrationView.post" title="Link to this definition"></a></dt>
+<dd><p>Registers a new user, sets their password, and creates an authentication token.
+The user profile is created based on the ‘type’ (either ‘customer’ or ‘business’).</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-auth_app.api">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-auth_app.api" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="freelancer_platform_app.tests.html" class="btn btn-neutral float-left" title="freelancer_platform_app.tests package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="freelancer_platform_app.api.html" class="btn btn-neutral float-right" title="freelancer_platform_app.api package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Simon Kral.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

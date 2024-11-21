@@ -1,0 +1,813 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>freelancer_platform_app.api package &mdash; Coderr 2024 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=6fefd858"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="coderr_project package" href="coderr_project.html" />
+    <link rel="prev" title="auth_app.api package" href="auth_app.api.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Coderr
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Coderr</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="auth_app.html">Auth-App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="freelancer_platform_app.html">Freelancer-Platform-App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auth_app.api.html">Auth-API</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Freelancer-Platform-API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-freelancer_platform_app.api.filters">freelancer_platform_app.api.filters module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#freelancer_platform_app.api.filters.OfferFilter"><code class="docutils literal notranslate"><span class="pre">OfferFilter</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-freelancer_platform_app.api.pagination">freelancer_platform_app.api.pagination module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#freelancer_platform_app.api.pagination.OfferPagination"><code class="docutils literal notranslate"><span class="pre">OfferPagination</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-freelancer_platform_app.api.serializers">freelancer_platform_app.api.serializers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#freelancer_platform_app.api.serializers.DetailsHyperlinkedSerializer"><code class="docutils literal notranslate"><span class="pre">DetailsHyperlinkedSerializer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#freelancer_platform_app.api.serializers.DetailsSerializer"><code class="docutils literal notranslate"><span class="pre">DetailsSerializer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#freelancer_platform_app.api.serializers.OfferDetailSerializer"><code class="docutils literal notranslate"><span class="pre">OfferDetailSerializer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#freelancer_platform_app.api.serializers.OfferSerializer"><code class="docutils literal notranslate"><span class="pre">OfferSerializer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#freelancer_platform_app.api.serializers.OrderSerializer"><code class="docutils literal notranslate"><span class="pre">OrderSerializer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#freelancer_platform_app.api.serializers.ReviewSerializer"><code class="docutils literal notranslate"><span class="pre">ReviewSerializer</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-freelancer_platform_app.api.urls">freelancer_platform_app.api.urls module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-freelancer_platform_app.api.views">freelancer_platform_app.api.views module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#freelancer_platform_app.api.views.BaseInfoView"><code class="docutils literal notranslate"><span class="pre">BaseInfoView</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#freelancer_platform_app.api.views.CompletedOrderCountView"><code class="docutils literal notranslate"><span class="pre">CompletedOrderCountView</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#freelancer_platform_app.api.views.DetailsView"><code class="docutils literal notranslate"><span class="pre">DetailsView</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#freelancer_platform_app.api.views.OfferDetailView"><code class="docutils literal notranslate"><span class="pre">OfferDetailView</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#freelancer_platform_app.api.views.OfferListView"><code class="docutils literal notranslate"><span class="pre">OfferListView</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#freelancer_platform_app.api.views.OrderCountView"><code class="docutils literal notranslate"><span class="pre">OrderCountView</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#freelancer_platform_app.api.views.OrderViewSet"><code class="docutils literal notranslate"><span class="pre">OrderViewSet</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#freelancer_platform_app.api.views.ReviewViewSet"><code class="docutils literal notranslate"><span class="pre">ReviewViewSet</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-freelancer_platform_app.api">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="coderr_project.html">Coderr-Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manage.html">Django manage file</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Coderr</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">Coderr</a></li>
+      <li class="breadcrumb-item active">freelancer_platform_app.api package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/freelancer_platform_app.api.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="freelancer-platform-app-api-package">
+<h1>freelancer_platform_app.api package<a class="headerlink" href="#freelancer-platform-app-api-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-freelancer_platform_app.api.filters">
+<span id="freelancer-platform-app-api-filters-module"></span><h2>freelancer_platform_app.api.filters module<a class="headerlink" href="#module-freelancer_platform_app.api.filters" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.filters.OfferFilter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">freelancer_platform_app.api.filters.</span></span><span class="sig-name descname"><span class="pre">OfferFilter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">queryset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freelancer_platform_app.api.filters.OfferFilter" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">FilterSet</span></code></p>
+<p>Custom filter class for filtering offers based on various criteria.</p>
+<dl class="simple">
+<dt>Filters:</dt><dd><ul class="simple">
+<li><p>creator_id: Filters offers by the ID of the user who created them.</p></li>
+<li><p>min_price: Filters offers where the minimum price of their details is less than or equal to a specified value.</p></li>
+<li><p>max_delivery_time: Filters offers where the maximum delivery time of their details is less than or equal to a specified value.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.filters.OfferFilter.Meta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="headerlink" href="#freelancer_platform_app.api.filters.OfferFilter.Meta" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.filters.OfferFilter.Meta.fields">
+<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['creator_id',</span> <span class="pre">'min_price',</span> <span class="pre">'max_delivery_time']</span></em><a class="headerlink" href="#freelancer_platform_app.api.filters.OfferFilter.Meta.fields" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.filters.OfferFilter.Meta.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#freelancer_platform_app.api.filters.OfferFilter.Meta.model" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="freelancer_platform_app.html#freelancer_platform_app.models.Offer" title="freelancer_platform_app.models.Offer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Offer</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.filters.OfferFilter.base_filters">
+<span class="sig-name descname"><span class="pre">base_filters</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'creator_id':</span> <span class="pre">&lt;django_filters.filters.NumberFilter</span> <span class="pre">object&gt;,</span> <span class="pre">'max_delivery_time':</span> <span class="pre">&lt;django_filters.filters.NumberFilter</span> <span class="pre">object&gt;,</span> <span class="pre">'min_price':</span> <span class="pre">&lt;django_filters.filters.NumberFilter</span> <span class="pre">object&gt;}</span></em><a class="headerlink" href="#freelancer_platform_app.api.filters.OfferFilter.base_filters" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.filters.OfferFilter.declared_filters">
+<span class="sig-name descname"><span class="pre">declared_filters</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'creator_id':</span> <span class="pre">&lt;django_filters.filters.NumberFilter</span> <span class="pre">object&gt;,</span> <span class="pre">'max_delivery_time':</span> <span class="pre">&lt;django_filters.filters.NumberFilter</span> <span class="pre">object&gt;,</span> <span class="pre">'min_price':</span> <span class="pre">&lt;django_filters.filters.NumberFilter</span> <span class="pre">object&gt;}</span></em><a class="headerlink" href="#freelancer_platform_app.api.filters.OfferFilter.declared_filters" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.filters.OfferFilter.filter_max_delivery_time">
+<span class="sig-name descname"><span class="pre">filter_max_delivery_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">queryset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freelancer_platform_app.api.filters.OfferFilter.filter_max_delivery_time" title="Link to this definition"></a></dt>
+<dd><p>Filters the queryset to include offers with at least one detail 
+having a delivery time less than or equal to the specified value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.filters.OfferFilter.filter_min_price">
+<span class="sig-name descname"><span class="pre">filter_min_price</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">queryset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freelancer_platform_app.api.filters.OfferFilter.filter_min_price" title="Link to this definition"></a></dt>
+<dd><p>Filters the queryset to include offers with at least one detail 
+having a price less than or equal to the specified value.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-freelancer_platform_app.api.pagination">
+<span id="freelancer-platform-app-api-pagination-module"></span><h2>freelancer_platform_app.api.pagination module<a class="headerlink" href="#module-freelancer_platform_app.api.pagination" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.pagination.OfferPagination">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">freelancer_platform_app.api.pagination.</span></span><span class="sig-name descname"><span class="pre">OfferPagination</span></span><a class="headerlink" href="#freelancer_platform_app.api.pagination.OfferPagination" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PageNumberPagination</span></code></p>
+<p>Custom pagination class for paginating offers.</p>
+<dl class="simple">
+<dt>Attributes:</dt><dd><ul class="simple">
+<li><p>page_size: Default number of offers per page.</p></li>
+<li><p>page_size_query_param: Query parameter name for customizing the page size.</p></li>
+<li><p>max_page_size: Maximum number of offers allowed per page.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.pagination.OfferPagination.max_page_size">
+<span class="sig-name descname"><span class="pre">max_page_size</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">12</span></em><a class="headerlink" href="#freelancer_platform_app.api.pagination.OfferPagination.max_page_size" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.pagination.OfferPagination.page_size">
+<span class="sig-name descname"><span class="pre">page_size</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">6</span></em><a class="headerlink" href="#freelancer_platform_app.api.pagination.OfferPagination.page_size" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.pagination.OfferPagination.page_size_query_param">
+<span class="sig-name descname"><span class="pre">page_size_query_param</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'page_size'</span></em><a class="headerlink" href="#freelancer_platform_app.api.pagination.OfferPagination.page_size_query_param" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-freelancer_platform_app.api.serializers">
+<span id="freelancer-platform-app-api-serializers-module"></span><h2>freelancer_platform_app.api.serializers module<a class="headerlink" href="#module-freelancer_platform_app.api.serializers" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.serializers.DetailsHyperlinkedSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">freelancer_platform_app.api.serializers.</span></span><span class="sig-name descname"><span class="pre">DetailsHyperlinkedSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freelancer_platform_app.api.serializers.DetailsHyperlinkedSerializer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#freelancer_platform_app.api.serializers.DetailsSerializer" title="freelancer_platform_app.api.serializers.DetailsSerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">DetailsSerializer</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">HyperlinkedModelSerializer</span></code></p>
+<p>Hyperlinked serializer for OfferDetail model, extending DetailsSerializer.
+Used for generating hyperlinks for details.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.serializers.DetailsHyperlinkedSerializer.Meta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="headerlink" href="#freelancer_platform_app.api.serializers.DetailsHyperlinkedSerializer.Meta" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.serializers.DetailsHyperlinkedSerializer.Meta.fields">
+<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['id',</span> <span class="pre">'url']</span></em><a class="headerlink" href="#freelancer_platform_app.api.serializers.DetailsHyperlinkedSerializer.Meta.fields" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.serializers.DetailsHyperlinkedSerializer.Meta.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#freelancer_platform_app.api.serializers.DetailsHyperlinkedSerializer.Meta.model" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="freelancer_platform_app.html#freelancer_platform_app.models.OfferDetail" title="freelancer_platform_app.models.OfferDetail"><code class="xref py py-class docutils literal notranslate"><span class="pre">OfferDetail</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.serializers.DetailsSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">freelancer_platform_app.api.serializers.</span></span><span class="sig-name descname"><span class="pre">DetailsSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freelancer_platform_app.api.serializers.DetailsSerializer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
+<p>Serializer for OfferDetail model. Provides basic fields for an offer detail.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.serializers.DetailsSerializer.Meta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="headerlink" href="#freelancer_platform_app.api.serializers.DetailsSerializer.Meta" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.serializers.DetailsSerializer.Meta.fields">
+<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['id',</span> <span class="pre">'title',</span> <span class="pre">'revisions',</span> <span class="pre">'delivery_time_in_days',</span> <span class="pre">'price',</span> <span class="pre">'features',</span> <span class="pre">'offer_type']</span></em><a class="headerlink" href="#freelancer_platform_app.api.serializers.DetailsSerializer.Meta.fields" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.serializers.DetailsSerializer.Meta.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#freelancer_platform_app.api.serializers.DetailsSerializer.Meta.model" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="freelancer_platform_app.html#freelancer_platform_app.models.OfferDetail" title="freelancer_platform_app.models.OfferDetail"><code class="xref py py-class docutils literal notranslate"><span class="pre">OfferDetail</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.serializers.OfferDetailSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">freelancer_platform_app.api.serializers.</span></span><span class="sig-name descname"><span class="pre">OfferDetailSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freelancer_platform_app.api.serializers.OfferDetailSerializer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
+<p>Serializer for Offer model, focusing on details serialization.
+Allows updating of nested details.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.serializers.OfferDetailSerializer.Meta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="headerlink" href="#freelancer_platform_app.api.serializers.OfferDetailSerializer.Meta" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.serializers.OfferDetailSerializer.Meta.fields">
+<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['id',</span> <span class="pre">'user',</span> <span class="pre">'title',</span> <span class="pre">'image',</span> <span class="pre">'description',</span> <span class="pre">'created_at',</span> <span class="pre">'updated_at',</span> <span class="pre">'details']</span></em><a class="headerlink" href="#freelancer_platform_app.api.serializers.OfferDetailSerializer.Meta.fields" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.serializers.OfferDetailSerializer.Meta.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#freelancer_platform_app.api.serializers.OfferDetailSerializer.Meta.model" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="freelancer_platform_app.html#freelancer_platform_app.models.Offer" title="freelancer_platform_app.models.Offer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Offer</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.serializers.OfferDetailSerializer.Meta.read_only_fields">
+<span class="sig-name descname"><span class="pre">read_only_fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['user',</span> <span class="pre">'created_at',</span> <span class="pre">'updated_at',</span> <span class="pre">'min_price',</span> <span class="pre">'min_delivery_time']</span></em><a class="headerlink" href="#freelancer_platform_app.api.serializers.OfferDetailSerializer.Meta.read_only_fields" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.serializers.OfferDetailSerializer.to_representation">
+<span class="sig-name descname"><span class="pre">to_representation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instance</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freelancer_platform_app.api.serializers.OfferDetailSerializer.to_representation" title="Link to this definition"></a></dt>
+<dd><p>Customizes the representation of the Offer model.
+Adds user details and minimum price/delivery time for GET requests.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.serializers.OfferDetailSerializer.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validated_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freelancer_platform_app.api.serializers.OfferDetailSerializer.update" title="Link to this definition"></a></dt>
+<dd><p>Updates an offer, including nested details if provided.
+Matches details based on their ‘offer_type’.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.serializers.OfferSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">freelancer_platform_app.api.serializers.</span></span><span class="sig-name descname"><span class="pre">OfferSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freelancer_platform_app.api.serializers.OfferSerializer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
+<p>Serializer for Offer model. Handles serialization of offer details
+and additional fields like minimum price and delivery time.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.serializers.OfferSerializer.Meta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="headerlink" href="#freelancer_platform_app.api.serializers.OfferSerializer.Meta" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.serializers.OfferSerializer.Meta.fields">
+<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['id',</span> <span class="pre">'user',</span> <span class="pre">'title',</span> <span class="pre">'image',</span> <span class="pre">'description',</span> <span class="pre">'created_at',</span> <span class="pre">'updated_at',</span> <span class="pre">'details']</span></em><a class="headerlink" href="#freelancer_platform_app.api.serializers.OfferSerializer.Meta.fields" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.serializers.OfferSerializer.Meta.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#freelancer_platform_app.api.serializers.OfferSerializer.Meta.model" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="freelancer_platform_app.html#freelancer_platform_app.models.Offer" title="freelancer_platform_app.models.Offer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Offer</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.serializers.OfferSerializer.Meta.read_only_fields">
+<span class="sig-name descname"><span class="pre">read_only_fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['user',</span> <span class="pre">'created_at',</span> <span class="pre">'updated_at',</span> <span class="pre">'min_price',</span> <span class="pre">'min_delivery_time']</span></em><a class="headerlink" href="#freelancer_platform_app.api.serializers.OfferSerializer.Meta.read_only_fields" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.serializers.OfferSerializer.create">
+<span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">validated_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freelancer_platform_app.api.serializers.OfferSerializer.create" title="Link to this definition"></a></dt>
+<dd><p>Creates a new offer along with its details.
+Associates the offer with the current user.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.serializers.OfferSerializer.to_representation">
+<span class="sig-name descname"><span class="pre">to_representation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instance</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freelancer_platform_app.api.serializers.OfferSerializer.to_representation" title="Link to this definition"></a></dt>
+<dd><p>Customizes the representation of the Offer model.
+Adds user details, hyperlinked details, and minimum price/delivery time for GET requests.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.serializers.OfferSerializer.validate">
+<span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attrs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freelancer_platform_app.api.serializers.OfferSerializer.validate" title="Link to this definition"></a></dt>
+<dd><p>Validates that the offer contains exactly three details
+with the required types: ‘basic’, ‘standard’, and ‘premium’.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.serializers.OrderSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">freelancer_platform_app.api.serializers.</span></span><span class="sig-name descname"><span class="pre">OrderSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freelancer_platform_app.api.serializers.OrderSerializer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
+<p>Serializer for Order model. Adds a method field for the business user
+and restricts writable fields to essential attributes for order creation.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.serializers.OrderSerializer.Meta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="headerlink" href="#freelancer_platform_app.api.serializers.OrderSerializer.Meta" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.serializers.OrderSerializer.Meta.fields">
+<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['id',</span> <span class="pre">'customer_user',</span> <span class="pre">'business_user',</span> <span class="pre">'title',</span> <span class="pre">'revisions',</span> <span class="pre">'delivery_time_in_days',</span> <span class="pre">'price',</span> <span class="pre">'features',</span> <span class="pre">'offer_type',</span> <span class="pre">'status',</span> <span class="pre">'created_at',</span> <span class="pre">'updated_at']</span></em><a class="headerlink" href="#freelancer_platform_app.api.serializers.OrderSerializer.Meta.fields" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.serializers.OrderSerializer.Meta.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#freelancer_platform_app.api.serializers.OrderSerializer.Meta.model" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="freelancer_platform_app.html#freelancer_platform_app.models.Order" title="freelancer_platform_app.models.Order"><code class="xref py py-class docutils literal notranslate"><span class="pre">Order</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.serializers.OrderSerializer.Meta.read_only_fields">
+<span class="sig-name descname"><span class="pre">read_only_fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['customer_user',</span> <span class="pre">'business_user',</span> <span class="pre">'title',</span> <span class="pre">'revisions',</span> <span class="pre">'delivery_time_in_days',</span> <span class="pre">'price',</span> <span class="pre">'features',</span> <span class="pre">'offer_type',</span> <span class="pre">'created_at',</span> <span class="pre">'updated_at']</span></em><a class="headerlink" href="#freelancer_platform_app.api.serializers.OrderSerializer.Meta.read_only_fields" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.serializers.OrderSerializer.create">
+<span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">validated_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freelancer_platform_app.api.serializers.OrderSerializer.create" title="Link to this definition"></a></dt>
+<dd><p>Creates a new order for the current user based on the selected offer detail.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.serializers.OrderSerializer.get_business_user">
+<span class="sig-name descname"><span class="pre">get_business_user</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freelancer_platform_app.api.serializers.OrderSerializer.get_business_user" title="Link to this definition"></a></dt>
+<dd><p>Returns the ID of the business user associated with the order.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.serializers.ReviewSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">freelancer_platform_app.api.serializers.</span></span><span class="sig-name descname"><span class="pre">ReviewSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freelancer_platform_app.api.serializers.ReviewSerializer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
+<p>Serializer for Review model. Allows creating a review
+while associating the current user as the reviewer.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.serializers.ReviewSerializer.Meta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="headerlink" href="#freelancer_platform_app.api.serializers.ReviewSerializer.Meta" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.serializers.ReviewSerializer.Meta.fields">
+<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['id',</span> <span class="pre">'business_user',</span> <span class="pre">'reviewer',</span> <span class="pre">'rating',</span> <span class="pre">'description',</span> <span class="pre">'created_at',</span> <span class="pre">'updated_at']</span></em><a class="headerlink" href="#freelancer_platform_app.api.serializers.ReviewSerializer.Meta.fields" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.serializers.ReviewSerializer.Meta.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#freelancer_platform_app.api.serializers.ReviewSerializer.Meta.model" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="freelancer_platform_app.html#freelancer_platform_app.models.Review" title="freelancer_platform_app.models.Review"><code class="xref py py-class docutils literal notranslate"><span class="pre">Review</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.serializers.ReviewSerializer.Meta.read_only_fields">
+<span class="sig-name descname"><span class="pre">read_only_fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['business_user',</span> <span class="pre">'reviewer',</span> <span class="pre">'created_at',</span> <span class="pre">'updated_at']</span></em><a class="headerlink" href="#freelancer_platform_app.api.serializers.ReviewSerializer.Meta.read_only_fields" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.serializers.ReviewSerializer.create">
+<span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">validated_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freelancer_platform_app.api.serializers.ReviewSerializer.create" title="Link to this definition"></a></dt>
+<dd><p>Creates a review for the specified business user, associating the current user as the reviewer.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-freelancer_platform_app.api.urls">
+<span id="freelancer-platform-app-api-urls-module"></span><h2>freelancer_platform_app.api.urls module<a class="headerlink" href="#module-freelancer_platform_app.api.urls" title="Link to this heading"></a></h2>
+</section>
+<section id="module-freelancer_platform_app.api.views">
+<span id="freelancer-platform-app-api-views-module"></span><h2>freelancer_platform_app.api.views module<a class="headerlink" href="#module-freelancer_platform_app.api.views" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.BaseInfoView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">freelancer_platform_app.api.views.</span></span><span class="sig-name descname"><span class="pre">BaseInfoView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freelancer_platform_app.api.views.BaseInfoView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">APIView</span></code></p>
+<p>Provides aggregated statistics about the platform, such as review count, average rating,
+number of business profiles, and total offers.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.BaseInfoView.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freelancer_platform_app.api.views.BaseInfoView.get" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.CompletedOrderCountView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">freelancer_platform_app.api.views.</span></span><span class="sig-name descname"><span class="pre">CompletedOrderCountView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freelancer_platform_app.api.views.CompletedOrderCountView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">APIView</span></code></p>
+<p>Returns the count of completed orders for a specific business user.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.CompletedOrderCountView.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pk</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freelancer_platform_app.api.views.CompletedOrderCountView.get" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.DetailsView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">freelancer_platform_app.api.views.</span></span><span class="sig-name descname"><span class="pre">DetailsView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freelancer_platform_app.api.views.DetailsView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">RetrieveUpdateDestroyAPIView</span></code></p>
+<p>Handles retrieving, updating, and deleting offer details.
+Permissions are set to allow admins, owners, and read-only access.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.DetailsView.authentication_classes">
+<span class="sig-name descname"><span class="pre">authentication_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.authentication.TokenAuthentication'&gt;]</span></em><a class="headerlink" href="#freelancer_platform_app.api.views.DetailsView.authentication_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.DetailsView.permission_classes">
+<span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;rest_framework.permissions.OperandHolder</span> <span class="pre">object&gt;]</span></em><a class="headerlink" href="#freelancer_platform_app.api.views.DetailsView.permission_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.DetailsView.queryset">
+<span class="sig-name descname"><span class="pre">queryset</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;QuerySet</span> <span class="pre">[&lt;OfferDetail:</span> <span class="pre">OfferDetail</span> <span class="pre">object</span> <span class="pre">(1)&gt;,</span> <span class="pre">&lt;OfferDetail:</span> <span class="pre">OfferDetail</span> <span class="pre">object</span> <span class="pre">(2)&gt;,</span> <span class="pre">&lt;OfferDetail:</span> <span class="pre">OfferDetail</span> <span class="pre">object</span> <span class="pre">(3)&gt;,</span> <span class="pre">&lt;OfferDetail:</span> <span class="pre">OfferDetail</span> <span class="pre">object</span> <span class="pre">(4)&gt;,</span> <span class="pre">&lt;OfferDetail:</span> <span class="pre">OfferDetail</span> <span class="pre">object</span> <span class="pre">(5)&gt;,</span> <span class="pre">&lt;OfferDetail:</span> <span class="pre">OfferDetail</span> <span class="pre">object</span> <span class="pre">(6)&gt;,</span> <span class="pre">&lt;OfferDetail:</span> <span class="pre">OfferDetail</span> <span class="pre">object</span> <span class="pre">(7)&gt;,</span> <span class="pre">&lt;OfferDetail:</span> <span class="pre">OfferDetail</span> <span class="pre">object</span> <span class="pre">(8)&gt;,</span> <span class="pre">&lt;OfferDetail:</span> <span class="pre">OfferDetail</span> <span class="pre">object</span> <span class="pre">(9)&gt;,</span> <span class="pre">&lt;OfferDetail:</span> <span class="pre">OfferDetail</span> <span class="pre">object</span> <span class="pre">(10)&gt;,</span> <span class="pre">&lt;OfferDetail:</span> <span class="pre">OfferDetail</span> <span class="pre">object</span> <span class="pre">(11)&gt;,</span> <span class="pre">&lt;OfferDetail:</span> <span class="pre">OfferDetail</span> <span class="pre">object</span> <span class="pre">(12)&gt;,</span> <span class="pre">&lt;OfferDetail:</span> <span class="pre">OfferDetail</span> <span class="pre">object</span> <span class="pre">(13)&gt;,</span> <span class="pre">&lt;OfferDetail:</span> <span class="pre">OfferDetail</span> <span class="pre">object</span> <span class="pre">(14)&gt;,</span> <span class="pre">&lt;OfferDetail:</span> <span class="pre">OfferDetail</span> <span class="pre">object</span> <span class="pre">(15)&gt;,</span> <span class="pre">&lt;OfferDetail:</span> <span class="pre">OfferDetail</span> <span class="pre">object</span> <span class="pre">(16)&gt;,</span> <span class="pre">&lt;OfferDetail:</span> <span class="pre">OfferDetail</span> <span class="pre">object</span> <span class="pre">(17)&gt;,</span> <span class="pre">&lt;OfferDetail:</span> <span class="pre">OfferDetail</span> <span class="pre">object</span> <span class="pre">(18)&gt;,</span> <span class="pre">&lt;OfferDetail:</span> <span class="pre">OfferDetail</span> <span class="pre">object</span> <span class="pre">(19)&gt;,</span> <span class="pre">&lt;OfferDetail:</span> <span class="pre">OfferDetail</span> <span class="pre">object</span> <span class="pre">(20)&gt;,</span> <span class="pre">'...(remaining</span> <span class="pre">elements</span> <span class="pre">truncated)...']&gt;</span></em><a class="headerlink" href="#freelancer_platform_app.api.views.DetailsView.queryset" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.DetailsView.serializer_class">
+<span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#freelancer_platform_app.api.views.DetailsView.serializer_class" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#freelancer_platform_app.api.serializers.DetailsSerializer" title="freelancer_platform_app.api.serializers.DetailsSerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">DetailsSerializer</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.OfferDetailView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">freelancer_platform_app.api.views.</span></span><span class="sig-name descname"><span class="pre">OfferDetailView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freelancer_platform_app.api.views.OfferDetailView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">RetrieveUpdateDestroyAPIView</span></code></p>
+<p>Handles retrieving, updating, and deleting specific offers.
+Applies dynamic permissions based on the request method.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.OfferDetailView.authentication_classes">
+<span class="sig-name descname"><span class="pre">authentication_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.authentication.TokenAuthentication'&gt;]</span></em><a class="headerlink" href="#freelancer_platform_app.api.views.OfferDetailView.authentication_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.OfferDetailView.destroy">
+<span class="sig-name descname"><span class="pre">destroy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freelancer_platform_app.api.views.OfferDetailView.destroy" title="Link to this definition"></a></dt>
+<dd><p>Deletes the specified offer and returns a success response.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.OfferDetailView.get_permissions">
+<span class="sig-name descname"><span class="pre">get_permissions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#freelancer_platform_app.api.views.OfferDetailView.get_permissions" title="Link to this definition"></a></dt>
+<dd><p>Dynamically sets permissions:
+- GET: Accessible to everyone.
+- PUT: Forbidden.
+- PATCH/DELETE: Restricted to admins and owners.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.OfferDetailView.permission_classes">
+<span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em><a class="headerlink" href="#freelancer_platform_app.api.views.OfferDetailView.permission_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.OfferDetailView.queryset">
+<span class="sig-name descname"><span class="pre">queryset</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;QuerySet</span> <span class="pre">[&lt;Offer:</span> <span class="pre">Offer</span> <span class="pre">object</span> <span class="pre">(1)&gt;,</span> <span class="pre">&lt;Offer:</span> <span class="pre">Offer</span> <span class="pre">object</span> <span class="pre">(2)&gt;,</span> <span class="pre">&lt;Offer:</span> <span class="pre">Offer</span> <span class="pre">object</span> <span class="pre">(3)&gt;,</span> <span class="pre">&lt;Offer:</span> <span class="pre">Offer</span> <span class="pre">object</span> <span class="pre">(4)&gt;,</span> <span class="pre">&lt;Offer:</span> <span class="pre">Offer</span> <span class="pre">object</span> <span class="pre">(5)&gt;,</span> <span class="pre">&lt;Offer:</span> <span class="pre">Offer</span> <span class="pre">object</span> <span class="pre">(6)&gt;,</span> <span class="pre">&lt;Offer:</span> <span class="pre">Offer</span> <span class="pre">object</span> <span class="pre">(7)&gt;,</span> <span class="pre">&lt;Offer:</span> <span class="pre">Offer</span> <span class="pre">object</span> <span class="pre">(8)&gt;,</span> <span class="pre">&lt;Offer:</span> <span class="pre">Offer</span> <span class="pre">object</span> <span class="pre">(9)&gt;,</span> <span class="pre">&lt;Offer:</span> <span class="pre">Offer</span> <span class="pre">object</span> <span class="pre">(10)&gt;,</span> <span class="pre">&lt;Offer:</span> <span class="pre">Offer</span> <span class="pre">object</span> <span class="pre">(11)&gt;,</span> <span class="pre">&lt;Offer:</span> <span class="pre">Offer</span> <span class="pre">object</span> <span class="pre">(12)&gt;,</span> <span class="pre">&lt;Offer:</span> <span class="pre">Offer</span> <span class="pre">object</span> <span class="pre">(13)&gt;,</span> <span class="pre">&lt;Offer:</span> <span class="pre">Offer</span> <span class="pre">object</span> <span class="pre">(14)&gt;]&gt;</span></em><a class="headerlink" href="#freelancer_platform_app.api.views.OfferDetailView.queryset" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.OfferDetailView.serializer_class">
+<span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#freelancer_platform_app.api.views.OfferDetailView.serializer_class" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#freelancer_platform_app.api.serializers.OfferDetailSerializer" title="freelancer_platform_app.api.serializers.OfferDetailSerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">OfferDetailSerializer</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.OfferListView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">freelancer_platform_app.api.views.</span></span><span class="sig-name descname"><span class="pre">OfferListView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freelancer_platform_app.api.views.OfferListView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ListCreateAPIView</span></code></p>
+<p>Handles listing and creating offers. Supports filtering, searching, and pagination.
+Different permissions are applied based on the request method.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.OfferListView.authentication_classes">
+<span class="sig-name descname"><span class="pre">authentication_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.authentication.TokenAuthentication'&gt;]</span></em><a class="headerlink" href="#freelancer_platform_app.api.views.OfferListView.authentication_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.OfferListView.filter_backends">
+<span class="sig-name descname"><span class="pre">filter_backends</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'django_filters.rest_framework.backends.DjangoFilterBackend'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'rest_framework.filters.SearchFilter'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'rest_framework.filters.OrderingFilter'&gt;]</span></em><a class="headerlink" href="#freelancer_platform_app.api.views.OfferListView.filter_backends" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.OfferListView.filterset_class">
+<span class="sig-name descname"><span class="pre">filterset_class</span></span><a class="headerlink" href="#freelancer_platform_app.api.views.OfferListView.filterset_class" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#freelancer_platform_app.api.filters.OfferFilter" title="freelancer_platform_app.api.filters.OfferFilter"><code class="xref py py-class docutils literal notranslate"><span class="pre">OfferFilter</span></code></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.OfferListView.get_permissions">
+<span class="sig-name descname"><span class="pre">get_permissions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#freelancer_platform_app.api.views.OfferListView.get_permissions" title="Link to this definition"></a></dt>
+<dd><p>Dynamically sets permissions based on the request method.
+- GET: Accessible to everyone.
+- POST: Restricted to admins and business users.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.OfferListView.ordering_fields">
+<span class="sig-name descname"><span class="pre">ordering_fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['updated_at',</span> <span class="pre">'min_price']</span></em><a class="headerlink" href="#freelancer_platform_app.api.views.OfferListView.ordering_fields" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.OfferListView.pagination_class">
+<span class="sig-name descname"><span class="pre">pagination_class</span></span><a class="headerlink" href="#freelancer_platform_app.api.views.OfferListView.pagination_class" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#freelancer_platform_app.api.pagination.OfferPagination" title="freelancer_platform_app.api.pagination.OfferPagination"><code class="xref py py-class docutils literal notranslate"><span class="pre">OfferPagination</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.OfferListView.permission_classes">
+<span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em><a class="headerlink" href="#freelancer_platform_app.api.views.OfferListView.permission_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.OfferListView.queryset">
+<span class="sig-name descname"><span class="pre">queryset</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;QuerySet</span> <span class="pre">[&lt;Offer:</span> <span class="pre">Offer</span> <span class="pre">object</span> <span class="pre">(1)&gt;,</span> <span class="pre">&lt;Offer:</span> <span class="pre">Offer</span> <span class="pre">object</span> <span class="pre">(2)&gt;,</span> <span class="pre">&lt;Offer:</span> <span class="pre">Offer</span> <span class="pre">object</span> <span class="pre">(3)&gt;,</span> <span class="pre">&lt;Offer:</span> <span class="pre">Offer</span> <span class="pre">object</span> <span class="pre">(4)&gt;,</span> <span class="pre">&lt;Offer:</span> <span class="pre">Offer</span> <span class="pre">object</span> <span class="pre">(5)&gt;,</span> <span class="pre">&lt;Offer:</span> <span class="pre">Offer</span> <span class="pre">object</span> <span class="pre">(6)&gt;,</span> <span class="pre">&lt;Offer:</span> <span class="pre">Offer</span> <span class="pre">object</span> <span class="pre">(7)&gt;,</span> <span class="pre">&lt;Offer:</span> <span class="pre">Offer</span> <span class="pre">object</span> <span class="pre">(8)&gt;,</span> <span class="pre">&lt;Offer:</span> <span class="pre">Offer</span> <span class="pre">object</span> <span class="pre">(9)&gt;,</span> <span class="pre">&lt;Offer:</span> <span class="pre">Offer</span> <span class="pre">object</span> <span class="pre">(10)&gt;,</span> <span class="pre">&lt;Offer:</span> <span class="pre">Offer</span> <span class="pre">object</span> <span class="pre">(11)&gt;,</span> <span class="pre">&lt;Offer:</span> <span class="pre">Offer</span> <span class="pre">object</span> <span class="pre">(12)&gt;,</span> <span class="pre">&lt;Offer:</span> <span class="pre">Offer</span> <span class="pre">object</span> <span class="pre">(13)&gt;,</span> <span class="pre">&lt;Offer:</span> <span class="pre">Offer</span> <span class="pre">object</span> <span class="pre">(14)&gt;]&gt;</span></em><a class="headerlink" href="#freelancer_platform_app.api.views.OfferListView.queryset" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.OfferListView.search_fields">
+<span class="sig-name descname"><span class="pre">search_fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['title',</span> <span class="pre">'description']</span></em><a class="headerlink" href="#freelancer_platform_app.api.views.OfferListView.search_fields" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.OfferListView.serializer_class">
+<span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#freelancer_platform_app.api.views.OfferListView.serializer_class" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#freelancer_platform_app.api.serializers.OfferSerializer" title="freelancer_platform_app.api.serializers.OfferSerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">OfferSerializer</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.OrderCountView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">freelancer_platform_app.api.views.</span></span><span class="sig-name descname"><span class="pre">OrderCountView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freelancer_platform_app.api.views.OrderCountView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">APIView</span></code></p>
+<p>Returns the count of in-progress orders for a specific business user.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.OrderCountView.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pk</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freelancer_platform_app.api.views.OrderCountView.get" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.OrderViewSet">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">freelancer_platform_app.api.views.</span></span><span class="sig-name descname"><span class="pre">OrderViewSet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freelancer_platform_app.api.views.OrderViewSet" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelViewSet</span></code></p>
+<p>Manages orders, including listing, creating, and updating them.
+Filters accessible orders based on the user’s role (customer or business user).</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.OrderViewSet.authentication_classes">
+<span class="sig-name descname"><span class="pre">authentication_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.authentication.TokenAuthentication'&gt;]</span></em><a class="headerlink" href="#freelancer_platform_app.api.views.OrderViewSet.authentication_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.OrderViewSet.basename">
+<span class="sig-name descname"><span class="pre">basename</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#freelancer_platform_app.api.views.OrderViewSet.basename" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.OrderViewSet.description">
+<span class="sig-name descname"><span class="pre">description</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#freelancer_platform_app.api.views.OrderViewSet.description" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.OrderViewSet.destroy">
+<span class="sig-name descname"><span class="pre">destroy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freelancer_platform_app.api.views.OrderViewSet.destroy" title="Link to this definition"></a></dt>
+<dd><p>Deletes the specified order and returns a success response.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.OrderViewSet.detail">
+<span class="sig-name descname"><span class="pre">detail</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#freelancer_platform_app.api.views.OrderViewSet.detail" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.OrderViewSet.get_permissions">
+<span class="sig-name descname"><span class="pre">get_permissions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#freelancer_platform_app.api.views.OrderViewSet.get_permissions" title="Link to this definition"></a></dt>
+<dd><p>Dynamically sets permissions based on the request method.
+- GET: Requires authentication.
+- POST: Restricted to admins and customer users.
+- PUT: Forbidden.
+- PATCH: Restricted to admins and owners.
+- DELETE: Restricted to admins.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.OrderViewSet.get_queryset">
+<span class="sig-name descname"><span class="pre">get_queryset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#freelancer_platform_app.api.views.OrderViewSet.get_queryset" title="Link to this definition"></a></dt>
+<dd><p>Returns orders relevant to the requesting user.
+- Superusers see all orders.
+- Customers and business users see orders they are involved in.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.OrderViewSet.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#freelancer_platform_app.api.views.OrderViewSet.name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.OrderViewSet.permission_classes">
+<span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em><a class="headerlink" href="#freelancer_platform_app.api.views.OrderViewSet.permission_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.OrderViewSet.queryset">
+<span class="sig-name descname"><span class="pre">queryset</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;QuerySet</span> <span class="pre">[&lt;Order:</span> <span class="pre">Order</span> <span class="pre">object</span> <span class="pre">(1)&gt;,</span> <span class="pre">&lt;Order:</span> <span class="pre">Order</span> <span class="pre">object</span> <span class="pre">(2)&gt;,</span> <span class="pre">&lt;Order:</span> <span class="pre">Order</span> <span class="pre">object</span> <span class="pre">(3)&gt;,</span> <span class="pre">&lt;Order:</span> <span class="pre">Order</span> <span class="pre">object</span> <span class="pre">(4)&gt;,</span> <span class="pre">&lt;Order:</span> <span class="pre">Order</span> <span class="pre">object</span> <span class="pre">(5)&gt;,</span> <span class="pre">&lt;Order:</span> <span class="pre">Order</span> <span class="pre">object</span> <span class="pre">(6)&gt;,</span> <span class="pre">&lt;Order:</span> <span class="pre">Order</span> <span class="pre">object</span> <span class="pre">(7)&gt;,</span> <span class="pre">&lt;Order:</span> <span class="pre">Order</span> <span class="pre">object</span> <span class="pre">(8)&gt;,</span> <span class="pre">&lt;Order:</span> <span class="pre">Order</span> <span class="pre">object</span> <span class="pre">(9)&gt;,</span> <span class="pre">&lt;Order:</span> <span class="pre">Order</span> <span class="pre">object</span> <span class="pre">(10)&gt;,</span> <span class="pre">&lt;Order:</span> <span class="pre">Order</span> <span class="pre">object</span> <span class="pre">(11)&gt;,</span> <span class="pre">&lt;Order:</span> <span class="pre">Order</span> <span class="pre">object</span> <span class="pre">(12)&gt;,</span> <span class="pre">&lt;Order:</span> <span class="pre">Order</span> <span class="pre">object</span> <span class="pre">(13)&gt;,</span> <span class="pre">&lt;Order:</span> <span class="pre">Order</span> <span class="pre">object</span> <span class="pre">(14)&gt;,</span> <span class="pre">&lt;Order:</span> <span class="pre">Order</span> <span class="pre">object</span> <span class="pre">(15)&gt;]&gt;</span></em><a class="headerlink" href="#freelancer_platform_app.api.views.OrderViewSet.queryset" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.OrderViewSet.serializer_class">
+<span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#freelancer_platform_app.api.views.OrderViewSet.serializer_class" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#freelancer_platform_app.api.serializers.OrderSerializer" title="freelancer_platform_app.api.serializers.OrderSerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">OrderSerializer</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.OrderViewSet.suffix">
+<span class="sig-name descname"><span class="pre">suffix</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#freelancer_platform_app.api.views.OrderViewSet.suffix" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.ReviewViewSet">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">freelancer_platform_app.api.views.</span></span><span class="sig-name descname"><span class="pre">ReviewViewSet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freelancer_platform_app.api.views.ReviewViewSet" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelViewSet</span></code></p>
+<p>Handles listing, creating, updating, and deleting reviews.
+Supports filtering by business user and reviewer, and ordering by date or rating.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.ReviewViewSet.authentication_classes">
+<span class="sig-name descname"><span class="pre">authentication_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.authentication.TokenAuthentication'&gt;]</span></em><a class="headerlink" href="#freelancer_platform_app.api.views.ReviewViewSet.authentication_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.ReviewViewSet.basename">
+<span class="sig-name descname"><span class="pre">basename</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#freelancer_platform_app.api.views.ReviewViewSet.basename" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.ReviewViewSet.description">
+<span class="sig-name descname"><span class="pre">description</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#freelancer_platform_app.api.views.ReviewViewSet.description" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.ReviewViewSet.detail">
+<span class="sig-name descname"><span class="pre">detail</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#freelancer_platform_app.api.views.ReviewViewSet.detail" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.ReviewViewSet.filter_backends">
+<span class="sig-name descname"><span class="pre">filter_backends</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'django_filters.rest_framework.backends.DjangoFilterBackend'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'rest_framework.filters.OrderingFilter'&gt;]</span></em><a class="headerlink" href="#freelancer_platform_app.api.views.ReviewViewSet.filter_backends" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.ReviewViewSet.filterset_fields">
+<span class="sig-name descname"><span class="pre">filterset_fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['business_user_id',</span> <span class="pre">'reviewer_id']</span></em><a class="headerlink" href="#freelancer_platform_app.api.views.ReviewViewSet.filterset_fields" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.ReviewViewSet.get_permissions">
+<span class="sig-name descname"><span class="pre">get_permissions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#freelancer_platform_app.api.views.ReviewViewSet.get_permissions" title="Link to this definition"></a></dt>
+<dd><p>Dynamically sets permissions based on the request method.
+- GET: Requires authentication.
+- POST: Restricted to admins and customer users.
+- PUT: Forbidden.
+- PATCH: Restricted to admins and owners.
+- DELETE: Restricted to staff and owners.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.ReviewViewSet.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#freelancer_platform_app.api.views.ReviewViewSet.name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.ReviewViewSet.ordering_fields">
+<span class="sig-name descname"><span class="pre">ordering_fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['updated_at',</span> <span class="pre">'rating']</span></em><a class="headerlink" href="#freelancer_platform_app.api.views.ReviewViewSet.ordering_fields" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.ReviewViewSet.permission_classes">
+<span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em><a class="headerlink" href="#freelancer_platform_app.api.views.ReviewViewSet.permission_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.ReviewViewSet.queryset">
+<span class="sig-name descname"><span class="pre">queryset</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;QuerySet</span> <span class="pre">[&lt;Review:</span> <span class="pre">Review</span> <span class="pre">object</span> <span class="pre">(1)&gt;,</span> <span class="pre">&lt;Review:</span> <span class="pre">Review</span> <span class="pre">object</span> <span class="pre">(2)&gt;,</span> <span class="pre">&lt;Review:</span> <span class="pre">Review</span> <span class="pre">object</span> <span class="pre">(3)&gt;,</span> <span class="pre">&lt;Review:</span> <span class="pre">Review</span> <span class="pre">object</span> <span class="pre">(4)&gt;,</span> <span class="pre">&lt;Review:</span> <span class="pre">Review</span> <span class="pre">object</span> <span class="pre">(5)&gt;,</span> <span class="pre">&lt;Review:</span> <span class="pre">Review</span> <span class="pre">object</span> <span class="pre">(6)&gt;,</span> <span class="pre">&lt;Review:</span> <span class="pre">Review</span> <span class="pre">object</span> <span class="pre">(7)&gt;,</span> <span class="pre">&lt;Review:</span> <span class="pre">Review</span> <span class="pre">object</span> <span class="pre">(8)&gt;,</span> <span class="pre">&lt;Review:</span> <span class="pre">Review</span> <span class="pre">object</span> <span class="pre">(9)&gt;,</span> <span class="pre">&lt;Review:</span> <span class="pre">Review</span> <span class="pre">object</span> <span class="pre">(10)&gt;]&gt;</span></em><a class="headerlink" href="#freelancer_platform_app.api.views.ReviewViewSet.queryset" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.ReviewViewSet.serializer_class">
+<span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#freelancer_platform_app.api.views.ReviewViewSet.serializer_class" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#freelancer_platform_app.api.serializers.ReviewSerializer" title="freelancer_platform_app.api.serializers.ReviewSerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">ReviewSerializer</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freelancer_platform_app.api.views.ReviewViewSet.suffix">
+<span class="sig-name descname"><span class="pre">suffix</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#freelancer_platform_app.api.views.ReviewViewSet.suffix" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-freelancer_platform_app.api">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-freelancer_platform_app.api" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="auth_app.api.html" class="btn btn-neutral float-left" title="auth_app.api package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="coderr_project.html" class="btn btn-neutral float-right" title="coderr_project package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Simon Kral.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

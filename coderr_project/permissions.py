@@ -3,6 +3,13 @@ from freelancer_platform_app.models import OfferDetail, Order
 
 
 class ReadOnly(BasePermission):
+    """
+    Permission class allowing read-only access.
+
+    Methods:
+        - has_permission: Grants access if the request method is safe (e.g., GET, HEAD, OPTIONS).
+        - has_object_permission: Grants access to individual objects if the request method is safe.
+    """
 
     def has_permission(self, request, view):
         return request.method in SAFE_METHODS
@@ -12,6 +19,13 @@ class ReadOnly(BasePermission):
 
 
 class Forbidden(BasePermission):
+    """
+    Permission class denying all access.
+
+    Methods:
+        - has_permission: Always returns False, denying access at the global level.
+        - has_object_permission: Always returns False, denying access to individual objects.
+    """
 
     def has_permission(self, request, view):
         return False
@@ -21,6 +35,13 @@ class Forbidden(BasePermission):
 
 
 class IsAdmin(BasePermission):
+    """
+    Permission class granting access only to admin users.
+
+    Methods:
+        - has_permission: Returns True if the user is a superuser.
+        - has_object_permission: Grants access to individual objects if the user is a superuser.
+    """
 
     def has_permission(self, request, view):
         return request.user.is_superuser
@@ -30,6 +51,13 @@ class IsAdmin(BasePermission):
 
 
 class IsStaff(BasePermission):
+    """
+    Permission class granting access only to staff users.
+
+    Methods:
+        - has_permission: Returns True if the user is staff.
+        - has_object_permission: Grants access to individual objects if the user is staff.
+    """
 
     def has_permission(self, request, view):
         return request.user.is_staff
@@ -39,6 +67,15 @@ class IsStaff(BasePermission):
 
 
 class IsOwner(BasePermission):
+    """
+    Permission class granting access only to the owner of the resource.
+
+    Methods:
+        - has_object_permission: Checks ownership for different types of objects:
+            - For OfferDetail: Checks if the user owns the associated offer.
+            - For Order: Checks if the user owns the associated offer via the offer details.
+            - For other objects: Checks if the user is directly the owner.
+    """
 
     def has_object_permission(self, request, view, obj):
         if isinstance(obj, OfferDetail):
@@ -50,6 +87,13 @@ class IsOwner(BasePermission):
 
 
 class IsBusinessUser(BasePermission):
+    """
+    Permission class granting access only to business users.
+
+    Methods:
+        - has_permission: Returns True if the user has an associated business profile.
+        - has_object_permission: Grants access to individual objects if the user has a business profile.
+    """
 
     def has_permission(self, request, view):
         return request.user.business_profile.exists()
@@ -59,6 +103,13 @@ class IsBusinessUser(BasePermission):
 
 
 class IsCustomerUser(BasePermission):
+    """
+    Permission class granting access only to customer users.
+
+    Methods:
+        - has_permission: Returns True if the user has an associated customer profile.
+        - has_object_permission: Grants access to individual objects if the user has a customer profile.
+    """
 
     def has_permission(self, request, view):
         return request.user.customer_profile.exists()

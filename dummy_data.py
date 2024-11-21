@@ -78,7 +78,8 @@ def add_dummy_data():
         basic_prices.append(random.randrange(5, 30) * 10)
         basic_delivery_time.append(random.randrange(1, 7))
         revisions_data.append([random.randrange(-1, 9), random.randrange(-1, 9), random.randrange(-1, 9)])
-        offer_details_ids.append(random.randrange(1, len(offers) * 3 + 1) - 1)
+        offer_details_ids.append(random.randrange(1, len(offers) * 3 + 1))
+
 
     details_data = [
         # Webdesign

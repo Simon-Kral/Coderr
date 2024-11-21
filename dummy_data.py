@@ -231,33 +231,3 @@ def add_dummy_data():
 
 if __name__ == '__main__':
     add_dummy_data()
-{
-    'title': 'Webdesign', 
-    'description': 'Ansprechendes Design für Ihre professionelle Webseite.', 
-    'details': [
-        {
-            'title': 'Basis-Webseiten-Design', 
-            'revisions': 3, 
-            'delivery_time_in_days': 2, 
-            'price': 210, 
-            'features': ['Basis-Design'], 
-            'offer_type': 'basic'
-        }, 
-        {
-            'title': 'Standard-Webseiten-Design', 
-            'revisions': -1, 
-            'delivery_time_in_days': 4, 
-            'price': 420, 
-            'features': ['Basis-Design', 'Responsive-Design'], 
-            'offer_type': 'standard'
-        }, 
-        {
-            'title': 'Premium-Webseiten-Design', 
-            'revisions': 4, 
-            'delivery_time_in_days': 6, 
-            'price': 620, 
-            'features': ['Basis-Design', 'Responsive-Design', 'Besondere Designwünsche'], 
-            'offer_type': 'premium'
-        }
-    ]
-}

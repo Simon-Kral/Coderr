@@ -89,7 +89,7 @@ class ProfileDetailView(APIView):
             response_data.update(user_serializer.data)
             return Response(response_data, status=status.HTTP_200_OK)
         except:
-            return Response({'error': 'User not found.'}, status=status.HTTP_404_NOT_FOUND)
+            return Response({'detail': 'User not found.'}, status=status.HTTP_404_NOT_FOUND)
 
     def patch(self, request, pk):
         """ 
@@ -99,10 +99,10 @@ class ProfileDetailView(APIView):
             profile = get_profile_by_user_id(id=pk, customer_model=CustomerProfile, business_model=BusinessProfile)
             user = User.objects.get(pk=pk)
         except:
-            return Response({'error': 'User not found.'}, status=status.HTTP_404_NOT_FOUND)
+            return Response({'detail': 'User not found.'}, status=status.HTTP_404_NOT_FOUND)
 
         if not request.user.is_superuser | (request.user == profile.user):
-            return Response({"detail": "You do not have permission to perform this action."}, status=status.HTTP_403_FORBIDDEN)
+            return Response({'detail': 'You do not have permission to perform this action.'}, status=status.HTTP_403_FORBIDDEN)
 
         data = {key: value for key, value in request.data.items()}
         data.update({'username': user.username})
@@ -121,7 +121,11 @@ class ProfileDetailView(APIView):
 
         if user_serializer.is_valid():
             if profile_serializer.is_valid():
-                return Response(profile_serializer.data, status=status.HTTP_200_OK)
+                response_data = {'email': user_serializer.data['email'], **profile_serializer.data}
+                for item in ['user', 'created_at', 'file', 'uploaded_at']:
+                    if item in response_data:
+                        response_data.pop(item)
+                return Response(response_data, status=status.HTTP_200_OK)
             return Response(profile_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         return Response(user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

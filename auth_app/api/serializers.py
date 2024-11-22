@@ -35,11 +35,9 @@ class RegistrationSerializer(serializers.Serializer):
         repeated_password = attrs.get('repeated_password')
 
         if User.objects.filter(username=attrs['username']).exists():
-            raise serializers.ValidationError(
-                {'error': 'A user with this username already exists.'})
+            raise serializers.ValidationError('A user with this username already exists.')
         if pw != repeated_password:
-            raise serializers.ValidationError(
-                {'error': 'Passwords don\'t match.'})
+            raise serializers.ValidationError('Passwords don\'t match.')
         return attrs
 
     def create(self, validated_data):
@@ -67,10 +65,10 @@ class LoginSerializer(serializers.Serializer):
         username = attrs.get('username')
         password = attrs.get('password')
         if not User.objects.filter(username=username).exists():
-            raise serializers.ValidationError({'error': 'Username not found.'})
+            raise serializers.ValidationError('Username not found.')
         self.user = User.objects.get(username=username)
         if not self.user.check_password(password):
-            raise serializers.ValidationError({'error': 'Wrong password.'})
+            raise serializers.ValidationError('Wrong password.')
         return attrs
 
     def create(self, validated_data):

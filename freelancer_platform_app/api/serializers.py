@@ -3,12 +3,16 @@ from ..models import Offer, OfferDetail, Order, Review
 from coderr_project.utils import get_hyperlinked_details, get_user_details, get_min_value
 from django.contrib.auth.models import User
 from django.contrib.auth.models import AnonymousUser
+from auth_app.models import BusinessProfile
 
 
 class DetailsSerializer(serializers.ModelSerializer):
     """
     Serializer for OfferDetail model. Provides basic fields for an offer detail.
     """
+
+    price = serializers.DecimalField(max_digits=15, decimal_places=2, default=0, coerce_to_string=False)
+
     class Meta:
         model = OfferDetail
         fields = ['id', 'title', 'revisions', 'delivery_time_in_days', 'price', 'features', 'offer_type']
@@ -19,9 +23,16 @@ class DetailsHyperlinkedSerializer(DetailsSerializer, serializers.HyperlinkedMod
     Hyperlinked serializer for OfferDetail model, extending DetailsSerializer.
     Used for generating hyperlinks for details.
     """
+
+    url = serializers.SerializerMethodField()
+
     class Meta:
         model = OfferDetail
         fields = ['id', 'url']
+
+    def get_url(self, obj):
+        return f"/offerdetails/{obj.pk}/"
+
 
 
 class OfferSerializer(serializers.ModelSerializer):
@@ -58,15 +69,13 @@ class OfferSerializer(serializers.ModelSerializer):
         """
         detail_data = self.initial_data.get('details')
         if len(detail_data) != 3:
-            raise serializers.ValidationError("Exactly 3 offer-details are required.")
+            raise serializers.ValidationError('Exactly 3 offer-details are required.')
 
         needed_types = {'basic', 'standard', 'premium'}
         provided_types = {detail['offer_type'] for detail in detail_data}
 
         if needed_types != provided_types:
-            raise serializers.ValidationError(
-                "The offer must contain exactly one 'basic', 'standard', and 'premium' detail."
-            )
+            raise serializers.ValidationError('The offer must contain exactly one basic, one standard, and one premium detail.')
 
         return attrs
 
@@ -159,6 +168,21 @@ class ReviewSerializer(serializers.ModelSerializer):
         model = Review
         fields = ['id', 'business_user', 'reviewer', 'rating', 'description', 'created_at', 'updated_at']
         read_only_fields = ['business_user', 'reviewer', 'created_at', 'updated_at']
+
+    def validate(self, attrs):
+        reviewer = self.context['request'].user
+
+        if self.context['request'].method == "POST":
+            if not User.objects.filter(pk=self.initial_data['business_user']).exists():
+                raise serializers.ValidationError('Business-user not found.')
+            business_user = User.objects.get(pk=self.initial_data['business_user'])
+            if not business_user.business_profile.exists():
+                raise serializers.ValidationError('You can only write reviews for business users.')
+
+            if Review.objects.filter(business_user=business_user, reviewer=reviewer).exists():
+                raise serializers.ValidationError('You can write only one review per business user.')
+
+        return attrs
 
     def create(self, validated_data):
         """

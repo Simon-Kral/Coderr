@@ -62,7 +62,7 @@ class OfferDetailView(generics.RetrieveUpdateDestroyAPIView):
         """
         instance = self.get_object()
         self.perform_destroy(instance)
-        return Response({}, status=status.HTTP_200_OK)
+        return Response({}, status=status.HTTP_204_NO_CONTENT)
 
     def get_permissions(self):
         """
@@ -141,7 +141,7 @@ class OrderViewSet(viewsets.ModelViewSet):
         """
         instance = self.get_object()
         self.perform_destroy(instance)
-        return Response({}, status=status.HTTP_200_OK)
+        return Response({}, status=status.HTTP_204_NO_CONTENT)
 
 
 class ReviewViewSet(viewsets.ModelViewSet):
@@ -215,7 +215,7 @@ class OrderCountView(APIView):
             order_count = Order.objects.filter(offer_details__offer__user=user, status='in_progress').count()
             return Response({'order_count': order_count}, status=status.HTTP_200_OK)
         except:
-            return Response({'error': 'Business user not found.'}, status=status.HTTP_404_NOT_FOUND)
+            return Response({'detail': 'Business user not found.'}, status=status.HTTP_404_NOT_FOUND)
 
 
 class CompletedOrderCountView(APIView):
@@ -228,4 +228,4 @@ class CompletedOrderCountView(APIView):
             completed_order_count = Order.objects.filter(offer_details__offer__user=user, status='completed').count()
             return Response({'completed_order_count': completed_order_count}, status=status.HTTP_200_OK)
         except:
-            return Response({'error': 'Business user not found.'}, status=status.HTTP_404_NOT_FOUND)
+            return Response({'detail': 'Business user not found.'}, status=status.HTTP_404_NOT_FOUND)

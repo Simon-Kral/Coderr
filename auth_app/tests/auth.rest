@@ -32,8 +32,8 @@
 # 
 
 
-@token_business = 62800b6b806b7a6837b953e0d73256561a978b24
-@token_customer = caef84cccc6627c2ae0c71c5d3b8655252b86a01
+@token_business = dcfb5de69a0690bb60bd75bc4eee218aa45f72ee
+@token_customer = d80002f692d744e5b98fbfc9b148072cec6b1876
 @token_admin = 66951446c4e912903de88fe344981606db14cf92
 ### AUTH ###
 
@@ -71,11 +71,27 @@ Content-Type: application/json
 Authorization: token {{token_customer}}
 
 {
-    "first_name": "Simon",
-    "last_name": "Kral",
-    "email": "simonkral92@gmail.com",
-    "tel": "016097774153",
-    "location": "Reudelsterz",
+    "first_name": "Andrey",
+    "last_name": "Kaufmann",
+    "email": "andreyk@gast.de",
+    "tel": "063541630",
+    "location": "Berlin",
+    "description": "Die Firma",
+    "working_hours": 40
+}
+
+###
+
+PATCH http://127.0.0.1:8000/api/profile/6/
+Content-Type: application/json
+Authorization: token {{token_business}}
+
+{
+    "first_name": "Kevin",
+    "last_name": "Theisen",
+    "email": "kevint@gast.de",
+    "tel": "063541630",
+    "location": "Berlin",
     "description": "Die Firma",
     "working_hours": 40
 }

@@ -1,5 +1,5 @@
 from rest_framework.permissions import BasePermission, SAFE_METHODS
-from freelancer_platform_app.models import OfferDetail, Order
+from freelancer_platform_app.models import OfferDetail, Order, Review
 
 
 class ReadOnly(BasePermission):
@@ -82,6 +82,8 @@ class IsOwner(BasePermission):
             return request.user == obj.offer.user
         elif isinstance(obj, Order):
             return request.user == obj.offer_details.offer.user
+        elif isinstance(obj, Review):
+            return request.user == obj.reviewer
         else:
             return request.user == obj.user
 

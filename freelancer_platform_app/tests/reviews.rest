@@ -32,10 +32,10 @@
 # 
 
 
-@token_business = 62800b6b806b7a6837b953e0d73256561a978b24
-@token_customer = caef84cccc6627c2ae0c71c5d3b8655252b86a01
-@token_admin = 66951446c4e912903de88fe344981606db14cf92
-### Orders
+@token_business = dcfb5de69a0690bb60bd75bc4eee218aa45f72ee
+@token_customer = d80002f692d744e5b98fbfc9b148072cec6b1876
+@token_admin = 88b762f73eb663ce65037bbc19d69bdf8651c7ab
+### Reviews 
 
 GET http://127.0.0.1:8000/api/reviews/
 Content-Type: application/json
@@ -43,7 +43,7 @@ Authorization: token {{token_customer}}
 
 ###
 
-GET http://127.0.0.1:8000/api/reviews/1
+GET http://127.0.0.1:8000/api/reviews/3
 Content-Type: application/json
 Authorization: token {{token_customer}}
 
@@ -54,7 +54,81 @@ Content-Type: application/json
 Authorization: token {{token_customer}}
 
 {
+    "business_user": 19,
+    "rating": 5,
+    "description": "Hervorragende Erfahrung!"
+}
+
+###
+
+POST http://127.0.0.1:8000/api/reviews/
+Content-Type: application/json
+Authorization: token {{token_business}}
+
+{
     "business_user": 3,
     "rating": 5,
     "description": "Hervorragende Erfahrung!"
 }
+
+###
+
+PATCH http://127.0.0.1:8000/api/reviews/11/
+Content-Type: application/json
+Authorization: token {{token_customer}}
+
+{
+    "rating": 5,
+    "description": "Hervorragende Erfahrung!"
+}
+
+###
+
+PATCH http://127.0.0.1:8000/api/reviews/5/
+Content-Type: application/json
+Authorization: token {{token_business}}
+
+{
+    "rating": 5,
+    "description": "Hervorragende Erfahrung!"
+}
+
+###
+
+PATCH http://127.0.0.1:8000/api/reviews/10/
+Content-Type: application/json
+Authorization: token {{token_customer}}
+
+{
+    "rating": 5,
+    "description": "Hervorragende Erfahrung!"
+}
+
+###
+
+PATCH http://127.0.0.1:8000/api/reviews/200/
+Content-Type: application/json
+Authorization: token {{token_customer}}
+
+{
+    "rating": 5,
+    "description": "Hervorragende Erfahrung!"
+}
+
+###
+
+DELETE http://127.0.0.1:8000/api/reviews/200/
+Content-Type: application/json
+Authorization: token {{token_customer}}
+
+###
+
+DELETE http://127.0.0.1:8000/api/reviews/15/
+Content-Type: application/json
+Authorization: token {{token_customer}}
+
+###
+
+DELETE http://127.0.0.1:8000/api/reviews/16/
+Content-Type: application/json
+Authorization: token {{token_business}}

@@ -31,7 +31,7 @@ class OfferDetail(models.Model):
     title = models.CharField(max_length=255)
     revisions = models.IntegerField(default=1, validators=[MinValueValidator(-1)])
     delivery_time_in_days = models.PositiveIntegerField()
-    price = models.IntegerField()
+    price = models.DecimalField(max_digits=15, decimal_places=2, default=0)
     features = models.JSONField()
     offer_type = models.CharField(max_length=8, choices=TYPE_CHOICES)
 

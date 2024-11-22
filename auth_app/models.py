@@ -38,10 +38,10 @@ class BusinessProfile(UserProfile):
     Associates a business profile with a User object and provides additional business-related fields.
     """
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='business_profile')
-    location = models.CharField(max_length=50, blank=True, null=True)
-    tel = models.CharField(max_length=50, blank=True, null=True)
-    description = models.TextField(blank=True, null=True)
-    working_hours = models.CharField(max_length=20, blank=True, null=True)
+    location = models.CharField(max_length=50, default='', blank=True, null=True)
+    tel = models.CharField(max_length=50, default='', blank=True, null=True)
+    description = models.TextField(default='', blank=True, null=True)
+    working_hours = models.CharField(max_length=20, default='', blank=True, null=True)
 
     @property
     def type(self):

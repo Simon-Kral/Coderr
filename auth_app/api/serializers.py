@@ -33,7 +33,6 @@ class RegistrationSerializer(serializers.Serializer):
         """
         pw = attrs.get('password')
         repeated_password = attrs.get('repeated_password')
-        account_type = attrs.get('type')
 
         if User.objects.filter(username=attrs['username']).exists():
             raise serializers.ValidationError(
@@ -41,9 +40,6 @@ class RegistrationSerializer(serializers.Serializer):
         if pw != repeated_password:
             raise serializers.ValidationError(
                 {'error': 'Passwords don\'t match.'})
-        if account_type not in ['customer', 'business']:
-            raise serializers.ValidationError(
-                {'error': 'Account type is invalid.'})
         return attrs
 
     def create(self, validated_data):
